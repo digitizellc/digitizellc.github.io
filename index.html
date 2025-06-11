@@ -57,6 +57,75 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
+  /* Scroll Animation Styles */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .fade-in.animate {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .slide-in-left {
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .slide-in-left.animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .slide-in-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .slide-in-right.animate {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .scale-in {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .scale-in.animate {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .stagger-1 {
+    transition-delay: 0.1s;
+  }
+
+  .stagger-2 {
+    transition-delay: 0.2s;
+  }
+
+  .stagger-3 {
+    transition-delay: 0.3s;
+  }
+
+  .stagger-4 {
+    transition-delay: 0.4s;
+  }
+
+  .stagger-5 {
+    transition-delay: 0.5s;
+  }
+
+  .stagger-6 {
+    transition-delay: 0.6s;
+  }
   </style></head>
 <body class="font-roboto bg-white text-gray-800">
     <!-- Header -->
@@ -77,7 +146,7 @@
     <!-- Hero Section -->
     <section id="home" class="pt-28 pb-20 bg-gradient-to-br from-blue-50 to-white">
         <div class="container mx-auto px-5 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-10 md:mb-0">
+            <div class="md:w-1/2 mb-10 md:mb-0 slide-in-left">
                 <h1 class="text-4xl md:text-5xl font-medium text-gray-800 leading-tight mb-6">
                     Enterprise-Grade AI & Cloud Solutions
                 </h1>
@@ -90,7 +159,7 @@
                     </button>
                 </div>
             </div>
-            <div class="md:w-1/2">
+            <div class="md:w-1/2 slide-in-right">
                 <img class="w-full h-auto rounded-lg shadow-xl" src="images/3da4f77693-ac4637dc1932e0c2a5bc.png" alt="modern tech office with cloud computing and AI visualization, blue tones, professional corporate setting">
             </div>
         </div>
@@ -99,7 +168,7 @@
     <!-- Services Section -->
     <section id="services" class="py-10">
         <div class="container mx-auto px-5">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl font-medium mb-4">Our Services</h2>
                 <p class="text-secondary max-w-2xl mx-auto">
                     We offer comprehensive AWS Cloud and AI solutions tailored to your business needs.
@@ -107,7 +176,7 @@
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Service 1 -->
-                <div id="service-1" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div id="service-1" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow scale-in stagger-1">
                     <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-5">
                         <i class="fa-solid fa-cloud text-2xl"></i>
                     </div>
@@ -118,7 +187,7 @@
                 </div>
                 
                 <!-- Service 2 -->
-                <div id="service-2" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div id="service-2" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow scale-in stagger-2">
                     <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-5">
                         <i class="fa-solid fa-robot text-2xl"></i>
                     </div>
@@ -129,7 +198,7 @@
                 </div>
                 
                 <!-- Service 3 -->
-                <div id="service-3" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div id="service-3" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow scale-in stagger-3">
                     <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-5">
                         <i class="fa-solid fa-shield-halved text-2xl"></i>
                     </div>
@@ -140,7 +209,7 @@
                 </div>
                 
                 <!-- Service 4 -->
-                <div id="service-4" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div id="service-4" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow scale-in stagger-4">
                     <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-5">
                         <i class="fa-solid fa-database text-2xl"></i>
                     </div>
@@ -151,7 +220,7 @@
                 </div>
                 
                 <!-- Service 5 -->
-                <div id="service-5" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div id="service-5" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow scale-in stagger-5">
                     <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-5">
                         <i class="fa-solid fa-code text-2xl"></i>
                     </div>
@@ -162,7 +231,7 @@
                 </div>
                 
                 <!-- Service 6 -->
-                <div id="service-6" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow">
+                <div id="service-6" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow scale-in stagger-6">
                     <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-5">
                         <i class="fa-solid fa-headset text-2xl"></i>
                     </div>
@@ -178,7 +247,7 @@
     <!-- Industries Section -->
     <section id="industries" class="py-10 bg-gray-50">
         <div class="container mx-auto px-5">
-            <div class="text-center mb-16">
+            <div class="text-center mb-16 fade-in">
                 <h2 class="text-3xl font-medium mb-4">Industries We Serve</h2>
                 <p class="text-secondary max-w-2xl mx-auto">
                     Specialized solutions for healthcare and finance sectors with industry-specific expertise.
@@ -186,7 +255,7 @@
             </div>
             <div class="grid md:grid-cols-2 gap-8">
                 <!-- Healthcare -->
-                <div id="healthcare" class="bg-white rounded-lg overflow-hidden shadow-md">
+                <div id="healthcare" class="bg-white rounded-lg overflow-hidden shadow-md slide-in-left">
                     <div class="h-64 overflow-hidden">
                         <img class="w-full h-full object-cover" src="images/f1fd1a83c1-929bdd8008cdcf0e2ca7.png" alt="modern healthcare facility with digital technology, medical professionals using cloud technology, clean medical environment">
                     </div>
@@ -221,7 +290,7 @@
                 </div>
                 
                 <!-- Finance -->
-                <div id="finance" class="bg-white rounded-lg overflow-hidden shadow-md">
+                <div id="finance" class="bg-white rounded-lg overflow-hidden shadow-md slide-in-right">
                     <div class="h-64 overflow-hidden">
                         <img class="w-full h-full object-cover" src="images/09994b782c-208c8afc19bd1b1b693e.png" alt="modern finance office with digital displays showing financial data, professionals analyzing cloud-based financial technology">
                     </div>
@@ -258,7 +327,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20">
+    <section id="contact" class="py-20 fade-in">
         <!-- Calendly inline widget begin -->
         <div class="calendly-inline-widget" data-url="https://calendly.com/jesse-jin-digitize/30min" style="min-width:320px;height:700px;"></div>
         <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
@@ -322,6 +391,26 @@
                     document.getElementById('contact').scrollIntoView({
                         behavior: 'smooth'
                     });
+                });
+
+                // Scroll Animation Observer
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -100px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('animate');
+                        }
+                    });
+                }, observerOptions);
+
+                // Observe all elements with animation classes
+                document.addEventListener('DOMContentLoaded', () => {
+                    const elementsToAnimate = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
+                    elementsToAnimate.forEach(el => observer.observe(el));
                 });
                 </script>
             </div>
