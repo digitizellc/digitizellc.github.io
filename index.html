@@ -131,7 +131,7 @@
     <!-- Header -->
     <header id="header" class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
         <div class="container mx-auto px-5 py-4 flex items-center justify-between">
-            <div class="flex items-center">
+            <div class="flex items-center cursor-pointer" id="logo-section">
                 <div class="mr-2 text-primary text-2xl">
                     <i class="fa-solid fa-cloud"></i>
                 </div>
@@ -389,6 +389,14 @@
                 // Smooth scroll to contact section when "Schedule a Consultation" button is clicked
                 document.getElementById('schedule-consultation-btn').addEventListener('click', function() {
                     document.getElementById('contact').scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+
+                // Smooth scroll to top when logo section is clicked
+                document.getElementById('logo-section').addEventListener('click', function() {
+                    window.scrollTo({
+                        top: 0,
                         behavior: 'smooth'
                     });
                 });
