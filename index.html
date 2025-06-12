@@ -9,235 +9,388 @@
     "theme": {
         "extend": {
         "colors": {
-            "primary": "#007BFF",
-            "secondary": "#6C757D",
-            "accent": "#FD7E14",
-            "lightgray": "#D3D3D3"
+            "primary": "#00D4FF",
+            "secondary": "#8B5CF6", 
+            "accent": "#F59E0B",
+            "dark": "#0F0F23",
+            "darker": "#07070F",
+            "neon": "#39FF14"
         },
         "fontFamily": {
-            "roboto": [
-            "Roboto",
-            "sans-serif"
-            ],
-            "sans": [
-            "Inter",
-            "sans-serif"
-            ]
+            "inter": ["Inter", "sans-serif"],
+            "mono": ["JetBrains Mono", "monospace"]
         }
         }
     }
     };</script>
-    <title>Digitize</title>
+    <title>Digitize - AI Age Consulting</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;500;600;700;800;900&amp;display=swap"><style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap">
+    
+    <style>
       body {
         font-family: 'Inter', sans-serif !important;
+        background: #0F0F23;
       }
       
       /* Preserve Font Awesome icons */
       .fa, .fas, .far, .fal, .fab {
         font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
       }
-    </style><style>
-  .highlighted-section {
-    outline: 2px solid #3F20FB;
-    background-color: rgba(63, 32, 251, 0.1);
-  }
 
-  .edit-button {
-    position: absolute;
-    z-index: 1000;
-  }
+      /* Hide scrollbars */
+      ::-webkit-scrollbar { display: none; }
+      html, body { -ms-overflow-style: none; scrollbar-width: none; }
 
-  ::-webkit-scrollbar {
-    display: none;
-  }
+      /* Animated gradient background */
+      .gradient-bg {
+        background: linear-gradient(-45deg, #0F0F23, #1a1a3e, #2d1b69, #0F0F23);
+        background-size: 400% 400%;
+        animation: gradientShift 15s ease infinite;
+      }
 
-  html, body {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
+      @keyframes gradientShift {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
 
-  /* Scroll Animation Styles */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
+      /* Glowing text effect */
+      .glow-text {
+        text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
+      }
 
-  .fade-in.animate {
-    opacity: 1;
-    transform: translateY(0);
-  }
+      /* Neon border effect */
+      .neon-border {
+        border: 2px solid transparent;
+        background: linear-gradient(45deg, #00D4FF, #8B5CF6, #00D4FF) border-box;
+        border-radius: 12px;
+        position: relative;
+      }
 
-  .slide-in-left {
-    opacity: 0;
-    transform: translateX(-50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
+      .neon-border::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        background: linear-gradient(45deg, #00D4FF, #8B5CF6, #F59E0B);
+        border-radius: inherit;
+        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+        mask-composite: exclude;
+        -webkit-mask-composite: xor;
+      }
 
-  .slide-in-left.animate {
-    opacity: 1;
-    transform: translateX(0);
-  }
+      /* Floating animation */
+      .floating {
+        animation: floating 6s ease-in-out infinite;
+      }
 
-  .slide-in-right {
-    opacity: 0;
-    transform: translateX(50px);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
+      @keyframes floating {
+        0% { transform: translate(0, 0px); }
+        50% { transform: translate(0, -20px); }
+        100% { transform: translate(0, 0px); }
+      }
 
-  .slide-in-right.animate {
-    opacity: 1;
-    transform: translateX(0);
-  }
+      /* Pulse animation */
+      .pulse-glow {
+        animation: pulseGlow 2s ease-in-out infinite alternate;
+      }
 
-  .scale-in {
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-  }
+      @keyframes pulseGlow {
+        from { box-shadow: 0 0 20px #00D4FF; }
+        to { box-shadow: 0 0 40px #00D4FF, 0 0 60px #00D4FF; }
+      }
 
-  .scale-in.animate {
-    opacity: 1;
-    transform: scale(1);
-  }
+      /* Typewriter effect */
+      .typewriter {
+        overflow: hidden;
+        border-right: .15em solid #00D4FF;
+        white-space: nowrap;
+        margin: 0 auto;
+        letter-spacing: .15em;
+        animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+      }
 
-  .stagger-1 {
-    transition-delay: 0.1s;
-  }
+      @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+      }
 
-  .stagger-2 {
-    transition-delay: 0.2s;
-  }
+      @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: #00D4FF; }
+      }
 
-  .stagger-3 {
-    transition-delay: 0.3s;
-  }
+      /* Card hover effects */
+      .service-card {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s ease;
+      }
 
-  .stagger-4 {
-    transition-delay: 0.4s;
-  }
+      .service-card:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+      }
 
-  .stagger-5 {
-    transition-delay: 0.5s;
-  }
+      /* Scroll animations */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
 
-  .stagger-6 {
-    transition-delay: 0.6s;
-  }
-  </style></head>
-<body class="font-roboto bg-white text-gray-800">
+      .fade-in.animate {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .slide-in-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .slide-in-left.animate {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .slide-in-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .slide-in-right.animate {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .scale-in {
+        opacity: 0;
+        transform: scale(0.9);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+
+      .scale-in.animate {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Stagger delays */
+      .stagger-1 { transition-delay: 0.1s; }
+      .stagger-2 { transition-delay: 0.2s; }
+      .stagger-3 { transition-delay: 0.3s; }
+      .stagger-4 { transition-delay: 0.4s; }
+      .stagger-5 { transition-delay: 0.5s; }
+      .stagger-6 { transition-delay: 0.6s; }
+
+      /* Matrix effect background */
+      #matrix-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.1;
+      }
+
+      /* Button effects */
+      .btn-primary {
+        background: linear-gradient(45deg, #00D4FF, #8B5CF6);
+        border: none;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-primary::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+      }
+
+      .btn-primary:hover::before {
+        left: 100%;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+      }
+    </style>
+</head>
+<body class="font-inter bg-dark text-white gradient-bg overflow-x-hidden">
+    <!-- Matrix background canvas -->
+    <canvas id="matrix-canvas"></canvas>
+
     <!-- Header -->
-    <header id="header" class="fixed top-0 left-0 right-0 bg-white shadow-md z-50">
-        <div class="container mx-auto px-5 py-4 flex items-center justify-between">
-            <div class="flex items-center cursor-pointer" id="logo-section">
-                <div class="mr-2 text-primary text-2xl">
-                    <i class="fa-solid fa-cloud"></i>
+    <header id="header" class="fixed top-0 left-0 right-0 bg-dark/80 backdrop-blur-md border-b border-white/10 z-50">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <div class="flex items-center cursor-pointer group" id="logo-section">
+                <div class="mr-3 text-primary text-2xl group-hover:text-neon transition-colors">
+                    <i class="fa-solid fa-cloud glow-text"></i>
                 </div>
-                <h1 class="text-xl font-medium text-primary">Digitize</h1>
+                <h1 class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                    Digitize
+                </h1>
             </div>
-            <button id="get-in-touch-btn" class="bg-accent text-white px-5 py-2 rounded hover:bg-opacity-90 transition-colors">
+            <button id="get-in-touch-btn" class="btn-primary text-white px-6 py-3 rounded-lg font-medium hover:scale-105 transition-transform">
+                <i class="fa-solid fa-rocket mr-2"></i>
                 Get in Touch
             </button>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="pt-28 pb-20 bg-gradient-to-br from-blue-50 to-white">
-        <div class="container mx-auto px-5 flex flex-col md:flex-row items-center">
-            <div class="md:w-1/2 mb-10 md:mb-0 slide-in-left">
-                <h1 class="text-4xl md:text-5xl font-medium text-gray-800 leading-tight mb-6">
-                    Enterprise-Grade AI & Cloud Solutions
-                </h1>
-                <p class="text-2xl text-secondary mb-8">
-                    Digitize helps companies leverage AWS Cloud and AI technologies to drive innovation, efficiency and growth.
-                </p>
-                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                    <button id="schedule-consultation-btn" class="bg-primary text-white px-6 py-3 rounded shadow-md hover:bg-opacity-90 transition-colors">
-                        Schedule a Consultation
+    <section id="home" class="min-h-screen flex items-center justify-center pt-20 pb-10">
+        <div class="container mx-auto px-6">
+            <div class="text-center">
+                <!-- Main headline -->
+                <div class="mb-8 slide-in-left">
+                    <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight">
+                        <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent glow-text">
+                            AI-POWERED
+                        </span>
+                        <br>
+                        <span class="text-white typewriter">FUTURE</span>
+                    </h1>
+                    <div class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto font-light mb-8">
+                        Transform your business with <span class="text-primary font-medium">next-generation AI</span> and 
+                        <span class="text-secondary font-medium">cloud technologies</span>. 
+                        We don't just implement solutions – we architect your digital revolution.
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 slide-in-right">
+                    <button id="schedule-consultation-btn" class="btn-primary text-white px-8 py-4 rounded-lg font-bold text-lg pulse-glow">
+                        <i class="fa-solid fa-calendar-check mr-2"></i>
+                        Schedule AI Consultation
                     </button>
                 </div>
-            </div>
-            <div class="md:w-1/2 slide-in-right">
-                <img class="w-full h-auto rounded-lg shadow-xl" src="images/3da4f77693-ac4637dc1932e0c2a5bc.png" alt="modern tech office with cloud computing and AI visualization, blue tones, professional corporate setting">
+
+                <!-- Tech Stack Icons -->
+                <div class="grid grid-cols-2 md:grid-cols-6 gap-8 max-w-4xl mx-auto opacity-60 fade-in">
+                    <div class="text-center floating">
+                        <i class="fa-brands fa-aws text-4xl text-accent mb-2"></i>
+                        <div class="text-sm">AWS</div>
+                    </div>
+                    <div class="text-center floating" style="animation-delay: 1s;">
+                        <i class="fa-solid fa-brain text-4xl text-primary mb-2"></i>
+                        <div class="text-sm">OpenAI</div>
+                    </div>
+                    <div class="text-center floating" style="animation-delay: 2s;">
+                        <i class="fa-brands fa-python text-4xl text-secondary mb-2"></i>
+                        <div class="text-sm">Python</div>
+                    </div>
+                    <div class="text-center floating" style="animation-delay: 3s;">
+                        <i class="fa-brands fa-docker text-4xl text-primary mb-2"></i>
+                        <div class="text-sm">Docker</div>
+                    </div>
+                    <div class="text-center floating" style="animation-delay: 4s;">
+                        <i class="fa-solid fa-database text-4xl text-accent mb-2"></i>
+                        <div class="text-sm">BigQuery</div>
+                    </div>
+                    <div class="text-center floating" style="animation-delay: 5s;">
+                        <i class="fa-solid fa-microchip text-4xl text-secondary mb-2"></i>
+                        <div class="text-sm">TensorFlow</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-10">
-        <div class="container mx-auto px-5">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl font-medium mb-4">Our Services</h2>
-                <p class="text-secondary max-w-2xl mx-auto">
-                    We offer comprehensive AWS Cloud and AI solutions tailored to your business needs.
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-5xl font-black mb-6">
+                    <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        SERVICES
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Cutting-edge solutions that push the boundaries of what's possible with AI and cloud technology
                 </p>
             </div>
+            
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Service 1 -->
-                <div id="service-1" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow scale-in stagger-1">
-                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-5">
-                        <i class="fa-solid fa-cloud text-2xl"></i>
+                <div class="service-card rounded-2xl p-8 scale-in stagger-1">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6 pulse-glow">
+                        <i class="fa-solid fa-rocket text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-medium mb-3">Cloud Migration</h3>
-                    <p class="text-secondary mb-4">
-                        Seamlessly migrate your existing infrastructure to AWS Cloud with minimal disruption to your operations.
+                    <h3 class="text-2xl font-bold mb-4 text-primary">AI Transformation</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Complete AI integration from strategy to deployment. Machine learning, NLP, computer vision, and generative AI solutions.
                     </p>
                 </div>
                 
                 <!-- Service 2 -->
-                <div id="service-2" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow scale-in stagger-2">
-                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-5">
-                        <i class="fa-solid fa-robot text-2xl"></i>
+                <div class="service-card rounded-2xl p-8 scale-in stagger-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center mb-6 pulse-glow">
+                        <i class="fa-solid fa-cloud text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-medium mb-3">AI Implementation</h3>
-                    <p class="text-secondary mb-4">
-                        Implement cutting-edge AI solutions to automate processes, gain insights, and drive innovation.
+                    <h3 class="text-2xl font-bold mb-4 text-secondary">Cloud Supremacy</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Next-gen cloud architecture with serverless computing, microservices, and infinite scalability.
                     </p>
                 </div>
                 
                 <!-- Service 3 -->
-                <div id="service-3" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow scale-in stagger-3">
-                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-5">
-                        <i class="fa-solid fa-shield-halved text-2xl"></i>
+                <div class="service-card rounded-2xl p-8 scale-in stagger-3">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-primary rounded-xl flex items-center justify-center mb-6 pulse-glow">
+                        <i class="fa-solid fa-shield-halved text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-medium mb-3">Cloud Security</h3>
-                    <p class="text-secondary mb-4">
-                        Secure your cloud infrastructure with industry-leading security practices and compliance frameworks.
+                    <h3 class="text-2xl font-bold mb-4 text-accent">Quantum Security</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Future-proof security with zero-trust architecture, AI-powered threat detection, and quantum encryption.
                     </p>
                 </div>
                 
                 <!-- Service 4 -->
-                <div id="service-4" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow scale-in stagger-4">
-                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-5">
-                        <i class="fa-solid fa-database text-2xl"></i>
+                <div class="service-card rounded-2xl p-8 scale-in stagger-4">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mb-6 pulse-glow">
+                        <i class="fa-solid fa-chart-line text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-medium mb-3">Data Analytics</h3>
-                    <p class="text-secondary mb-4">
-                        Transform your data into actionable insights with advanced analytics and machine learning.
+                    <h3 class="text-2xl font-bold mb-4 text-primary">Predictive Analytics</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Advanced data science with real-time analytics, predictive modeling, and automated insights.
                     </p>
                 </div>
                 
                 <!-- Service 5 -->
-                <div id="service-5" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow scale-in stagger-5">
-                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-5">
-                        <i class="fa-solid fa-code text-2xl"></i>
+                <div class="service-card rounded-2xl p-8 scale-in stagger-5">
+                    <div class="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center mb-6 pulse-glow">
+                        <i class="fa-solid fa-infinity text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-medium mb-3">DevOps Automation</h3>
-                    <p class="text-secondary mb-4">
-                        Streamline your development and operations with automated CI/CD pipelines and infrastructure as code.
+                    <h3 class="text-2xl font-bold mb-4 text-secondary">DevOps Infinity</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Continuous everything with AI-driven pipelines, automated testing, and self-healing infrastructure.
                     </p>
                 </div>
                 
                 <!-- Service 6 -->
-                <div id="service-6" class="border border-lightgray rounded-lg p-6 hover:shadow-md transition-shadow scale-in stagger-6">
-                    <div class="w-14 h-14 bg-blue-100 rounded-lg flex items-center justify-center text-primary mb-5">
-                        <i class="fa-solid fa-headset text-2xl"></i>
+                <div class="service-card rounded-2xl p-8 scale-in stagger-6">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-secondary rounded-xl flex items-center justify-center mb-6 pulse-glow">
+                        <i class="fa-solid fa-robot text-2xl text-white"></i>
                     </div>
-                    <h3 class="text-xl font-medium mb-3">Managed Services</h3>
-                    <p class="text-secondary mb-4">
-                        Let our experts manage your cloud infrastructure, so you can focus on your core business.
+                    <h3 class="text-2xl font-bold mb-4 text-accent">AI Agents</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        Autonomous AI systems that work 24/7 - from customer service to complex decision making.
                     </p>
                 </div>
             </div>
@@ -245,81 +398,87 @@
     </section>
 
     <!-- Industries Section -->
-    <section id="industries" class="py-10 bg-gray-50">
-        <div class="container mx-auto px-5">
-            <div class="text-center mb-16 fade-in">
-                <h2 class="text-3xl font-medium mb-4">Industries We Serve</h2>
-                <p class="text-secondary max-w-2xl mx-auto">
-                    Specialized solutions for healthcare and finance sectors with industry-specific expertise.
+    <section id="industries" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-20 fade-in">
+                <h2 class="text-5xl font-black mb-6">
+                    <span class="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+                        INDUSTRIES
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+                    Specialized AI solutions for sectors ready to embrace the future
                 </p>
             </div>
-            <div class="grid md:grid-cols-2 gap-8">
+            
+            <div class="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
                 <!-- Healthcare -->
-                <div id="healthcare" class="bg-white rounded-lg overflow-hidden shadow-md slide-in-left">
-                    <div class="h-64 overflow-hidden">
-                        <img class="w-full h-full object-cover" src="images/f1fd1a83c1-929bdd8008cdcf0e2ca7.png" alt="modern healthcare facility with digital technology, medical professionals using cloud technology, clean medical environment">
+                <div class="service-card rounded-3xl overflow-hidden slide-in-left">
+                    <div class="h-80 overflow-hidden relative">
+                        <img class="w-full h-full object-cover" src="images/f1fd1a83c1-929bdd8008cdcf0e2ca7.png" alt="AI-powered healthcare technology">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <i class="fa-solid fa-hospital-user text-2xl text-primary mr-3"></i>
-                            <h3 class="text-2xl font-medium">Healthcare</h3>
+                    <div class="p-8">
+                        <div class="flex items-center mb-6">
+                            <i class="fa-solid fa-heartbeat text-3xl text-primary mr-4 glow-text"></i>
+                            <h3 class="text-3xl font-bold text-primary">HealthTech Revolution</h3>
                         </div>
-                        <p class="text-secondary mb-5">
-                            We help healthcare organizations leverage cloud and AI technologies to improve patient care, streamline operations, and ensure compliance with regulations like HIPAA.
+                        <p class="text-gray-300 mb-6 text-lg leading-relaxed">
+                            Revolutionary AI diagnostics, patient prediction models, and automated clinical workflows that save lives and reduce costs.
                         </p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-primary mt-1 mr-2"></i>
-                                <span>HIPAA-compliant cloud solutions</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-primary mt-1 mr-2"></i>
-                                <span>AI-powered diagnostic tools</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-primary mt-1 mr-2"></i>
-                                <span>Patient data management and analytics</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-primary mt-1 mr-2"></i>
-                                <span>Telemedicine infrastructure</span>
-                            </li>
-
-                        </ul>
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-check text-neon mr-3"></i>
+                                <span class="text-sm">AI Diagnostics</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-check text-neon mr-3"></i>
+                                <span class="text-sm">Drug Discovery</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-check text-neon mr-3"></i>
+                                <span class="text-sm">Patient Monitoring</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-check text-neon mr-3"></i>
+                                <span class="text-sm">Predictive Analytics</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
                 <!-- Finance -->
-                <div id="finance" class="bg-white rounded-lg overflow-hidden shadow-md slide-in-right">
-                    <div class="h-64 overflow-hidden">
-                        <img class="w-full h-full object-cover" src="images/09994b782c-208c8afc19bd1b1b693e.png" alt="modern finance office with digital displays showing financial data, professionals analyzing cloud-based financial technology">
+                <div class="service-card rounded-3xl overflow-hidden slide-in-right">
+                    <div class="h-80 overflow-hidden relative">
+                        <img class="w-full h-full object-cover" src="images/09994b782c-208c8afc19bd1b1b693e.png" alt="AI-powered fintech solutions">
+                        <div class="absolute inset-0 bg-gradient-to-t from-dark/80 to-transparent"></div>
                     </div>
-                    <div class="p-6">
-                        <div class="flex items-center mb-4">
-                            <i class="fa-solid fa-landmark text-2xl text-primary mr-3"></i>
-                            <h3 class="text-2xl font-medium">Finance</h3>
+                    <div class="p-8">
+                        <div class="flex items-center mb-6">
+                            <i class="fa-solid fa-chart-line text-3xl text-secondary mr-4 glow-text"></i>
+                            <h3 class="text-3xl font-bold text-secondary">FinTech Evolution</h3>
                         </div>
-                        <p class="text-secondary mb-5">
-                            We provide financial institutions with secure, scalable cloud solutions and AI-powered tools to enhance customer experience, detect fraud, and optimize operations.
+                        <p class="text-gray-300 mb-6 text-lg leading-relaxed">
+                            Advanced algorithmic trading, fraud detection, and personalized financial services powered by cutting-edge AI.
                         </p>
-                        <ul class="space-y-2 mb-6">
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-primary mt-1 mr-2"></i>
-                                <span>Regulatory compliance solutions</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-primary mt-1 mr-2"></i>
-                                <span>Fraud detection and prevention</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-primary mt-1 mr-2"></i>
-                                <span>Investment analysis platforms</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fa-solid fa-check text-primary mt-1 mr-2"></i>
-                                <span>Customer analytics and personalization</span>
-                            </li>
-                        </ul>
+                        <div class="grid grid-cols-2 gap-4 mb-8">
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-check text-neon mr-3"></i>
+                                <span class="text-sm">Algorithmic Trading</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-check text-neon mr-3"></i>
+                                <span class="text-sm">Fraud Prevention</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-check text-neon mr-3"></i>
+                                <span class="text-sm">Risk Assessment</span>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fa-solid fa-check text-neon mr-3"></i>
+                                <span class="text-sm">Robo-Advisory</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -328,101 +487,159 @@
 
     <!-- Contact Section -->
     <section id="contact" class="py-20 fade-in">
-        <!-- Calendly inline widget begin -->
-        <div class="calendly-inline-widget" data-url="https://calendly.com/jesse-jin-digitize/30min" style="min-width:320px;height:700px;"></div>
-        <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-        <!-- Calendly inline widget end -->
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-5xl font-black mb-6">
+                    <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        START YOUR AI JOURNEY
+                    </span>
+                </h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
+                    Ready to transform your business? Let's build the future together.
+                </p>
+            </div>
+            
+            <!-- Calendly inline widget -->
+            <div class="max-w-4xl mx-auto service-card rounded-3xl p-8">
+                <div class="calendly-inline-widget" data-url="https://calendly.com/jesse-jin-digitize/30min" style="min-width:320px;height:700px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
-    <footer id="footer" class="bg-gray-800 text-white py-12">
-        <div class="container mx-auto px-5">
-            <div class="grid md:grid-cols-4 gap-8">
+    <footer id="footer" class="bg-darker/50 backdrop-blur-md border-t border-white/10 py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-12">
                 <div>
-                    <div class="flex items-center mb-6">
-                        <div class="mr-2 text-white text-2xl">
-                            <i class="fa-solid fa-cloud"></i>
+                    <div class="flex items-center mb-8">
+                        <div class="mr-3 text-primary text-3xl">
+                            <i class="fa-solid fa-cloud glow-text"></i>
                         </div>
-                        <h3 class="text-xl font-medium text-white">Digitize LLC</h3>
+                        <h3 class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                            Digitize LLC
+                        </h3>
                     </div>
-                    <p class="text-gray-400 mb-6">
-                        Enterprise-Grade AI & Cloud Solutions.
+                    <p class="text-gray-400 text-lg leading-relaxed">
+                        Building the AI-powered future, one innovation at a time.
                     </p>
                 </div>
                 <div>
-                    <h4 class="text-lg font-medium mb-6">Services</h4>
-                    <ul class="space-y-3">
-                        <li><span class="text-gray-400 hover:text-white transition-colors cursor-pointer">Cloud Migration</span></li>
-                        <li><span class="text-gray-400 hover:text-white transition-colors cursor-pointer">AI Implementation</span></li>
-                        <li><span class="text-gray-400 hover:text-white transition-colors cursor-pointer">Cloud Security</span></li>
-                        <li><span class="text-gray-400 hover:text-white transition-colors cursor-pointer">Data Analytics</span></li>
-                        <li><span class="text-gray-400 hover:text-white transition-colors cursor-pointer">DevOps Automation</span></li>
-                        <li><span class="text-gray-400 hover:text-white transition-colors cursor-pointer">Managed Services</span></li>
+                    <h4 class="text-xl font-bold mb-8 text-primary">Services</h4>
+                    <ul class="space-y-4">
+                        <li><span class="text-gray-400 hover:text-primary transition-colors cursor-pointer">AI Transformation</span></li>
+                        <li><span class="text-gray-400 hover:text-primary transition-colors cursor-pointer">Cloud Supremacy</span></li>
+                        <li><span class="text-gray-400 hover:text-primary transition-colors cursor-pointer">Quantum Security</span></li>
+                        <li><span class="text-gray-400 hover:text-primary transition-colors cursor-pointer">Predictive Analytics</span></li>
+                        <li><span class="text-gray-400 hover:text-primary transition-colors cursor-pointer">DevOps Infinity</span></li>
+                        <li><span class="text-gray-400 hover:text-primary transition-colors cursor-pointer">AI Agents</span></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-medium mb-6">Industries</h4>
-                    <ul class="space-y-3">
-                        <li><span class="text-gray-400 hover:text-white transition-colors cursor-pointer">Healthcare</span></li>
-                        <li><span class="text-gray-400 hover:text-white transition-colors cursor-pointer">Finance</span></li>
+                    <h4 class="text-xl font-bold mb-8 text-secondary">Industries</h4>
+                    <ul class="space-y-4">
+                        <li><span class="text-gray-400 hover:text-secondary transition-colors cursor-pointer">HealthTech Revolution</span></li>
+                        <li><span class="text-gray-400 hover:text-secondary transition-colors cursor-pointer">FinTech Evolution</span></li>
+                        <li><span class="text-gray-400 hover:text-secondary transition-colors cursor-pointer">RetailTech Innovation</span></li>
+                        <li><span class="text-gray-400 hover:text-secondary transition-colors cursor-pointer">Manufacturing 4.0</span></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-lg font-medium mb-6">Company</h4>
-                    <ul class="space-y-3">
-                        <li><span class="text-gray-400 hover:text-white transition-colors cursor-pointer"><a href="https://www.linkedin.com/company/digitize-ai">Blog</a></span></li>
+                    <h4 class="text-xl font-bold mb-8 text-accent">Connect</h4>
+                    <ul class="space-y-4">
+                        <li><a href="https://www.linkedin.com/company/digitize-ai" class="text-gray-400 hover:text-accent transition-colors">LinkedIn</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-700 mt-12 pt-8 text-center text-gray-400">
-                <p>© <span id="current-year"></span> Digitize LLC. All rights reserved.</p>
-                <script>
-                document.getElementById('current-year').textContent = new Date().getFullYear();
-                
-                // Smooth scroll to contact section when "Get in Touch" button is clicked
-                document.getElementById('get-in-touch-btn').addEventListener('click', function() {
-                    document.getElementById('contact').scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-                
-                // Smooth scroll to contact section when "Schedule a Consultation" button is clicked
-                document.getElementById('schedule-consultation-btn').addEventListener('click', function() {
-                    document.getElementById('contact').scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                });
-
-                // Smooth scroll to top when logo section is clicked
-                document.getElementById('logo-section').addEventListener('click', function() {
-                    window.scrollTo({
-                        top: 0,
-                        behavior: 'smooth'
-                    });
-                });
-
-                // Scroll Animation Observer
-                const observerOptions = {
-                    threshold: 0.1,
-                    rootMargin: '0px 0px -100px 0px'
-                };
-
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('animate');
-                        }
-                    });
-                }, observerOptions);
-
-                // Observe all elements with animation classes
-                document.addEventListener('DOMContentLoaded', () => {
-                    const elementsToAnimate = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
-                    elementsToAnimate.forEach(el => observer.observe(el));
-                });
-                </script>
+            
+            <div class="border-t border-white/10 mt-16 pt-12 text-center">
+                <p class="text-gray-400 text-lg">
+                    © <span id="current-year"></span> Digitize LLC. Architecting the AI Revolution.
+                </p>
             </div>
         </div>
     </footer>
 
+    <script>
+        // Set current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Matrix rain effect
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        const matrixArray = matrix.split("");
+        const fontSize = 10;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for(let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(15, 15, 35, 0.04)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.fillStyle = '#00D4FF';
+            ctx.font = fontSize + 'px monospace';
+
+            for(let i = 0; i < drops.length; i++) {
+                const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+                
+                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        // Only run matrix effect on larger screens
+        if (window.innerWidth > 768) {
+            setInterval(drawMatrix, 35);
+        }
+
+        // Smooth scrolling for buttons
+        document.getElementById('get-in-touch-btn').addEventListener('click', function() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        document.getElementById('schedule-consultation-btn').addEventListener('click', function() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        document.getElementById('logo-section').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const elementsToAnimate = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
+            elementsToAnimate.forEach(el => observer.observe(el));
+        });
+
+        // Resize canvas on window resize
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body></html>
