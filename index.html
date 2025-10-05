@@ -466,43 +466,86 @@
         // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
         
-        // Matrix rain effect
+        // Optimized Matrix rain effect
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
+        
+        let canvasWidth = window.innerWidth;
+        let canvasHeight = window.innerHeight;
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
 
-        const matrix = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]}";
+        // Optimized settings for better performance
+        const matrix = "DIGITIZE10";  // Shorter, branded matrix characters
         const matrixArray = matrix.split("");
-        const fontSize = 10;
-        const columns = canvas.width / fontSize;
-        const drops = [];
+        const fontSize = 16;  // Larger font = fewer columns = better performance
+        let columns = Math.floor(canvasWidth / fontSize);
+        let drops = [];
 
+        // Initialize drops with random starting positions
         for(let x = 0; x < columns; x++) {
-            drops[x] = 1;
+            drops[x] = Math.random() * -100;  // Random start for wave effect
         }
 
-        function drawMatrix() {
-            ctx.fillStyle = 'rgba(15, 15, 35, 0.04)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-            
-            ctx.fillStyle = '#00D4FF';
-            ctx.font = fontSize + 'px monospace';
+        // FPS control for better performance
+        let lastFrameTime = 0;
+        const targetFPS = 24;  // Lower FPS = less CPU usage
+        const frameInterval = 1000 / targetFPS;
+        
+        // Pause when page not visible
+        let isVisible = true;
+        document.addEventListener('visibilitychange', () => {
+            isVisible = !document.hidden;
+        });
 
-            for(let i = 0; i < drops.length; i++) {
+        function drawMatrix(currentTime) {
+            // Only run on larger screens and when page is visible
+            if (canvasWidth <= 768 || !isVisible) {
+                requestAnimationFrame(drawMatrix);
+                return;
+            }
+
+            // FPS throttling
+            const deltaTime = currentTime - lastFrameTime;
+            if (deltaTime < frameInterval) {
+                requestAnimationFrame(drawMatrix);
+                return;
+            }
+            lastFrameTime = currentTime - (deltaTime % frameInterval);
+
+            // Fade effect - lighter fade = trails disappear faster
+            ctx.fillStyle = 'rgba(15, 15, 35, 0.08)';
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+            // Only update a subset of columns per frame for better performance
+            const updateStep = 2;  // Update every 2nd column
+            
+            for(let i = 0; i < columns; i += updateStep) {
+                // Gradient color effect - brighter at the head
+                const gradient = ctx.createLinearGradient(0, drops[i] * fontSize - fontSize * 3, 0, drops[i] * fontSize);
+                gradient.addColorStop(0, 'rgba(0, 212, 255, 0.1)');
+                gradient.addColorStop(0.5, 'rgba(0, 212, 255, 0.5)');
+                gradient.addColorStop(1, '#00D4FF');
+                
+                ctx.fillStyle = gradient;
+                ctx.font = fontSize + 'px JetBrains Mono, monospace';
+                
                 const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
                 
-                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                // Reset drop with probability
+                if(drops[i] * fontSize > canvasHeight && Math.random() > 0.95) {
                     drops[i] = 0;
                 }
                 drops[i]++;
             }
+
+            requestAnimationFrame(drawMatrix);
         }
 
-        // Only run matrix effect on larger screens
-        if (window.innerWidth > 768) {
-            setInterval(drawMatrix, 35);
+        // Start animation loop
+        if (canvasWidth > 768) {
+            requestAnimationFrame(drawMatrix);
         }
 
         // Smooth scrolling for buttons
@@ -538,10 +581,21 @@
             elementsToAnimate.forEach(el => observer.observe(el));
         });
 
-        // Resize canvas on window resize
+        // Optimized resize handler with debouncing
+        let resizeTimeout;
         window.addEventListener('resize', () => {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            clearTimeout(resizeTimeout);
+            resizeTimeout = setTimeout(() => {
+                canvasWidth = window.innerWidth;
+                canvasHeight = window.innerHeight;
+                canvas.width = canvasWidth;
+                canvas.height = canvasHeight;
+                columns = Math.floor(canvasWidth / fontSize);
+                drops = [];
+                for(let x = 0; x < columns; x++) {
+                    drops[x] = Math.random() * -100;
+                }
+            }, 250);  // Debounce resize events
         });
     </script>
 </body></html>
