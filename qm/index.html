@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Managed QM hosting on AWS by Digitize LLC. Deploy Y Combinator's company agent harness in your AWS account — Slack, web UI, isolated sandboxes, fully operated.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>tailwind.config = {
+        theme: {
+            extend: {
+                colors: {
+                    primary: "#38BDF8",
+                    secondary: "#818CF8",
+                    accent: "#FB923C",
+                    dark: "#0B0F23",
+                    darker: "#070B18",
+                    surface: "#151B2E",
+                    success: "#4ADE80",
+                    muted: "#94A3B8",
+                    light: "#F1F5F9",
+                    aws: "#FF9900"
+                },
+                fontFamily: {
+                    inter: ["Inter", "sans-serif"],
+                    mono: ["JetBrains Mono", "monospace"]
+                }
+            }
+        }
+    };</script>
+    <title>QM Managed Hosting on AWS — Digitize LLC</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #0B0F23; color: #F1F5F9; }
+        .fa, .fas, .far, .fab { font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important; }
+        .page-bg {
+            background: #0B0F23;
+            background-image:
+                radial-gradient(ellipse 70% 45% at 50% -15%, rgba(56, 189, 248, 0.1), transparent),
+                radial-gradient(ellipse 40% 30% at 10% 80%, rgba(255, 153, 0, 0.05), transparent);
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #38BDF8, #818CF8);
+            -webkit-background-clip: text; background-clip: text; color: transparent;
+        }
+        .card {
+            background: #151B2E;
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .card:hover { border-color: rgba(56,189,248,0.3); }
+        .card-featured {
+            background: linear-gradient(135deg, rgba(56,189,248,0.08), rgba(129,140,248,0.06)), #151B2E;
+            border: 1px solid rgba(129,140,248,0.35);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #38BDF8, #818CF8);
+            transition: opacity 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+        .btn-primary:hover {
+            opacity: 0.92; transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(56,189,248,0.3);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid rgba(129,140,248,0.35);
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .btn-secondary:hover {
+            background: rgba(129,140,248,0.08);
+            border-color: rgba(56,189,248,0.5);
+        }
+        .nav-link { color: #94A3B8; transition: color 0.2s; }
+        .nav-link:hover { color: #38BDF8; }
+        .icon-box {
+            background: linear-gradient(135deg, rgba(56,189,248,0.12), rgba(129,140,248,0.12));
+        }
+        .mermaid-wrap {
+            background: #070B18;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0.75rem;
+            padding: 1rem 0.5rem;
+            overflow-x: auto;
+        }
+        .mermaid-wrap .mermaid {
+            display: flex;
+            justify-content: center;
+            min-width: min(100%, 640px);
+        }
+        .mermaid-wrap .mermaid svg {
+            max-width: 100%;
+            height: auto;
+        }
+        .diagram-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #94A3B8;
+            margin-bottom: 0.75rem;
+        }
+        .fade-in { opacity: 0; transform: translateY(16px); transition: opacity 0.6s, transform 0.6s; }
+        .fade-in.show { opacity: 1; transform: translateY(0); }
+        details summary { cursor: pointer; list-style: none; }
+        details summary::-webkit-details-marker { display: none; }
+        .pricing-popular { border-color: rgba(56,189,248,0.5); box-shadow: 0 0 0 1px rgba(56,189,248,0.2); }
+    </style>
+</head>
+<body class="page-bg overflow-x-hidden">
+
+    <header class="fixed top-0 inset-x-0 bg-dark/90 backdrop-blur-md border-b border-white/[0.08] z-50">
+        <div class="container mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="../" class="flex items-center gap-3">
+                <i class="fa-solid fa-cloud text-primary text-xl"></i>
+                <span class="font-bold gradient-text text-lg">Digitize</span>
+                <span class="text-muted text-sm hidden sm:inline">/ QM Hosting</span>
+            </a>
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+                <a href="#why-aws" class="nav-link">Why AWS</a>
+                <a href="#included" class="nav-link">What's included</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </nav>
+            <a href="#contact" class="btn-primary text-white px-5 py-2.5 rounded-lg text-sm font-semibold">
+                Book a call
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="pt-28 pb-16 md:pt-32 md:pb-24">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="flex flex-wrap gap-2 mb-6">
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-aws/10 text-aws border border-aws/30">
+                    <i class="fa-brands fa-aws"></i> AWS-native deployment
+                </span>
+                <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-medium bg-surface border border-white/[0.08] text-muted">
+                    Your account · Your data
+                </span>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black leading-tight mb-6">
+                <span class="gradient-text">QM</span>
+                <span class="text-light"> for your whole company,</span>
+                <br class="hidden md:block">
+                <span class="text-light">running in </span><span class="text-aws">your AWS account</span>
+            </h1>
+            <p class="text-lg md:text-xl text-muted max-w-3xl leading-relaxed mb-8">
+                We deploy and operate <a href="https://github.com/yc-software/qm" class="text-primary hover:underline" target="_blank" rel="noopener">QM</a> —
+                Y Combinator's open-source agent harness for startups. Every employee gets an isolated workspace.
+                Teams collaborate in Slack and on the web. Infrastructure stays in <strong class="text-light">your</strong> VPC, on <strong class="text-light">your</strong> bill.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 mb-12">
+                <a href="#contact" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-center">
+                    <i class="fa-solid fa-calendar-check mr-2"></i>
+                    Schedule a discovery call
+                </a>
+                <a href="#pricing" class="btn-secondary text-light px-8 py-4 rounded-lg font-semibold text-center">
+                    View pricing
+                </a>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+                <div class="card rounded-xl p-4 text-center">
+                    <div class="text-2xl font-bold text-primary">48h</div>
+                    <div class="text-xs text-muted mt-1">Typical go-live</div>
+                </div>
+                <div class="card rounded-xl p-4 text-center">
+                    <div class="text-2xl font-bold text-secondary">BYOK</div>
+                    <div class="text-xs text-muted mt-1">Your model API keys</div>
+                </div>
+                <div class="card rounded-xl p-4 text-center">
+                    <div class="text-2xl font-bold text-success">1 org</div>
+                    <div class="text-xs text-muted mt-1">Dedicated deployment</div>
+                </div>
+                <div class="card rounded-xl p-4 text-center">
+                    <div class="text-2xl font-bold text-aws">AWS</div>
+                    <div class="text-xs text-muted mt-1">RDS · S3 · MicroVMs</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem / Solution -->
+    <section class="py-16 border-t border-white/[0.06]">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="fade-in">
+                    <h2 class="text-2xl font-bold text-light mb-4">DIY QM is a platform project</h2>
+                    <ul class="space-y-3 text-muted">
+                        <li class="flex gap-3"><i class="fa-solid fa-xmark text-accent mt-1 shrink-0"></i><span>Terraform, ECR, RDS, S3, and Lambda MicroVMs to wire up</span></li>
+                        <li class="flex gap-3"><i class="fa-solid fa-xmark text-accent mt-1 shrink-0"></i><span>Slack SSO, sandbox images, secrets, and security posture</span></li>
+                        <li class="flex gap-3"><i class="fa-solid fa-xmark text-accent mt-1 shrink-0"></i><span>Ongoing upgrades across a moving open-source codebase</span></li>
+                        <li class="flex gap-3"><i class="fa-solid fa-xmark text-accent mt-1 shrink-0"></i><span>Per-employee sandboxes that scale with headcount</span></li>
+                    </ul>
+                </div>
+                <div class="fade-in">
+                    <h2 class="text-2xl font-bold text-light mb-4">We deliver production QM on AWS</h2>
+                    <ul class="space-y-3 text-muted">
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-success mt-1 shrink-0"></i><span>Full AWS stack provisioned via QM's official Terraform backend</span></li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-success mt-1 shrink-0"></i><span>Live verification: sign-in, chat, agent-computer proof, Slack reply</span></li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-success mt-1 shrink-0"></i><span>Operate tier: patches, monitoring, rollback, incident response</span></li>
+                        <li class="flex gap-3"><i class="fa-solid fa-check text-success mt-1 shrink-0"></i><span>Handoff docs your team can audit — IAM role, not root keys</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why AWS -->
+    <section id="why-aws" class="py-16">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-black text-light mb-4">Built for AWS from day one</h2>
+                <p class="text-muted max-w-2xl mx-auto">QM's AWS target uses Terraform, ECR, RDS, S3, and Lambda MicroVMs for per-scope agent sandboxes — the same path YC documents for production deployments.</p>
+            </div>
+            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+                <div class="card rounded-xl p-6 fade-in">
+                    <div class="w-11 h-11 icon-box rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-database text-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-light mb-2">RDS Postgres</h3>
+                    <p class="text-sm text-muted">Sessions, memory, queue, and org state — durable and backup-ready in your account.</p>
+                </div>
+                <div class="card rounded-xl p-6 fade-in">
+                    <div class="w-11 h-11 icon-box rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-box text-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-light mb-2">S3 object store</h3>
+                    <p class="text-sm text-muted">Sandbox home snapshots, blobs, and artifacts — encrypted, lifecycle-managed.</p>
+                </div>
+                <div class="card rounded-xl p-6 fade-in">
+                    <div class="w-11 h-11 icon-box rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-microchip text-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-light mb-2">Lambda MicroVMs</h3>
+                    <p class="text-sm text-muted">Isolated agent "computers" per person and Slack room — persistent disk, strong isolation.</p>
+                </div>
+                <div class="card rounded-xl p-6 fade-in">
+                    <div class="w-11 h-11 icon-box rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-brands fa-docker text-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-light mb-2">ECR images</h3>
+                    <p class="text-sm text-muted">Immutable control-plane and sandbox images pinned by digest — reproducible deploys.</p>
+                </div>
+                <div class="card rounded-xl p-6 fade-in">
+                    <div class="w-11 h-11 icon-box rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-code text-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-light mb-2">Terraform IaC</h3>
+                    <p class="text-sm text-muted">Infrastructure as code in a deployment repo you own — plan, apply, and audit every change.</p>
+                </div>
+                <div class="card rounded-xl p-6 fade-in">
+                    <div class="w-11 h-11 icon-box rounded-lg flex items-center justify-center mb-4">
+                        <i class="fa-solid fa-user-shield text-primary"></i>
+                    </div>
+                    <h3 class="font-bold text-light mb-2">Least-privilege access</h3>
+                    <p class="text-sm text-muted">Digitize operates via a scoped IAM role with external ID — no shared root credentials.</p>
+                </div>
+            </div>
+
+            <!-- Architecture diagrams -->
+            <div class="card-featured rounded-2xl p-6 md:p-8 fade-in space-y-8">
+                <h3 class="font-bold text-light flex items-center gap-2">
+                    <i class="fa-brands fa-aws text-aws"></i>
+                    Reference architecture (single AWS account)
+                </h3>
+
+                <div>
+                    <p class="diagram-label">System topology</p>
+                    <div class="mermaid-wrap">
+                        <pre class="mermaid">flowchart TB
+    subgraph AWS["Customer AWS Account"]
+        direction TB
+
+        Internet(["Internet"])
+        Slack(["Slack workspace"])
+
+        subgraph Surfaces["QM surfaces"]
+            Portal["Portal & Web UI"]
+            Admin["Admin panel"]
+        end
+
+        Core["Core API — control plane"]
+
+        subgraph Data["Durable state"]
+            RDS[("RDS Postgres — sessions, memory, queue")]
+            S3[("S3 — snapshots and blobs")]
+        end
+
+        subgraph Sandboxes["Per-scope agent sandboxes"]
+            MV1["Lambda MicroVM — personal scope"]
+            MV2["Lambda MicroVM — room / channel"]
+        end
+
+        ECR["ECR — sandbox and core images"]
+
+        subgraph Platform["Platform & ops"]
+            SM["Secrets Manager"]
+            CW["CloudWatch"]
+            TF["Terraform state — S3 + DynamoDB lock"]
+        end
+    end
+
+    Internet --> Portal
+    Internet --> Admin
+    Slack --> Core
+    Portal --> Core
+    Admin --> Core
+    Core --> RDS
+    Core --> S3
+    Core --> MV1
+    Core --> MV2
+    MV1 --> S3
+    MV2 --> S3
+    Core -. images .-> ECR
+    MV1 -. images .-> ECR
+    MV2 -. images .-> ECR
+    Core --> SM
+    Core --> CW</pre>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="diagram-label">Digitize managed operations</p>
+                    <div class="mermaid-wrap">
+                        <pre class="mermaid">flowchart LR
+    subgraph Customer["Customer"]
+        Team["Your team"]
+        Acct["AWS account owner"]
+    end
+
+    subgraph Digitize["Digitize LLC"]
+        Op["QM operators"]
+    end
+
+    subgraph AWSAccount["Your AWS account"]
+        Role["IAM role — DigitizeQMOperator"]
+        Stack["QM stack — Terraform + ECR + RDS + S3 + MicroVMs"]
+    end
+
+    Team -->|"Web UI / Slack"| Stack
+    Acct -->|"Creates scoped role + ExternalId"| Role
+    Op -->|"AssumeRole — least privilege"| Role
+    Role -->|"terraform apply, qm up, monitoring"| Stack</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What's included -->
+    <section id="included" class="py-16 border-t border-white/[0.06]">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <h2 class="text-3xl md:text-4xl font-black text-light mb-12 text-center fade-in">What's included</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="card-featured rounded-2xl p-8 fade-in">
+                    <div class="text-xs font-semibold uppercase tracking-wide text-accent mb-2">Launch · one-time</div>
+                    <h3 class="text-2xl font-bold text-light mb-4">Production deployment</h3>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>QM init + AWS Terraform apply in your account</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>Web UI, admin panel, and sign-in (Slack SSO, OIDC, or email)</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>Model provider wired (Anthropic, OpenAI, or OpenRouter — your keys)</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>Security posture configured (we recommend Auto for most teams)</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>Slack bot setup (optional, same engagement)</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>Live proof: chat, sandbox file, conformance checks</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>Handoff pack: URLs, runbooks, rollback, cost estimate</li>
+                    </ul>
+                </div>
+                <div class="card rounded-2xl p-8 fade-in">
+                    <div class="text-xs font-semibold uppercase tracking-wide text-secondary mb-2">Operate · monthly</div>
+                    <h3 class="text-2xl font-bold text-light mb-4">Ongoing operations</h3>
+                    <ul class="space-y-3 text-sm text-muted">
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>Health monitoring and alerting</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>Scheduled QM version upgrades (patch windows)</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>Sandbox image rebuilds and ECR digest pinning</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>Incident triage and rollback execution</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>Budget cap review (org + per-user LLM limits)</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>4-hour response SLA (business hours)</li>
+                        <li class="flex gap-2"><i class="fa-solid fa-check text-success mt-0.5"></i>Monthly status summary</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="py-16">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-3xl font-black text-light mb-10 text-center fade-in">Five-day delivery</h2>
+            <div class="space-y-0 fade-in">
+                <div class="flex gap-4 pb-8 border-l border-primary/30 ml-4 pl-8 relative">
+                    <span class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary"></span>
+                    <div><span class="text-xs font-mono text-primary">Day 0</span><h4 class="font-bold text-light">Kickoff</h4><p class="text-sm text-muted">IAM role, deployment repo, auth and model choices</p></div>
+                </div>
+                <div class="flex gap-4 pb-8 border-l border-primary/30 ml-4 pl-8 relative">
+                    <span class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary"></span>
+                    <div><span class="text-xs font-mono text-primary">Day 1–2</span><h4 class="font-bold text-light">AWS infrastructure</h4><p class="text-sm text-muted">Terraform apply, ECR images, secrets push</p></div>
+                </div>
+                <div class="flex gap-4 pb-8 border-l border-primary/30 ml-4 pl-8 relative">
+                    <span class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary"></span>
+                    <div><span class="text-xs font-mono text-primary">Day 3</span><h4 class="font-bold text-light">Deploy & prove</h4><p class="text-sm text-muted">Live checks, admin chat, agent-computer verification</p></div>
+                </div>
+                <div class="flex gap-4 pb-8 border-l border-primary/30 ml-4 pl-8 relative">
+                    <span class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-primary"></span>
+                    <div><span class="text-xs font-mono text-primary">Day 4</span><h4 class="font-bold text-light">Slack & connectors</h4><p class="text-sm text-muted">Bot in workspace, OAuth connectors as scoped</p></div>
+                </div>
+                <div class="flex gap-4 ml-4 pl-8 relative">
+                    <span class="absolute -left-2 top-0 w-4 h-4 rounded-full bg-success"></span>
+                    <div><span class="text-xs font-mono text-success">Day 5</span><h4 class="font-bold text-light">Handoff</h4><p class="text-sm text-muted">Team onboarding doc, operate schedule, escalation path</p></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-16 border-t border-white/[0.06]">
+        <div class="container mx-auto px-6 max-w-5xl">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-black text-light mb-4">Pricing</h2>
+                <p class="text-muted">Transparent service fees. AWS and model API costs bill directly to your accounts.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="card rounded-2xl p-8 fade-in">
+                    <h3 class="text-lg font-bold text-light mb-1">Launch</h3>
+                    <p class="text-sm text-muted mb-4">One-time deployment</p>
+                    <div class="text-4xl font-black text-light mb-1">$4,500</div>
+                    <p class="text-xs text-muted mb-6">Typical 5 business days</p>
+                    <ul class="space-y-2 text-sm text-muted mb-8">
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Full AWS QM stack</li>
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Auth + admin setup</li>
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Live verification</li>
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Handoff documentation</li>
+                    </ul>
+                    <a href="#contact" class="btn-secondary block text-center text-light py-3 rounded-lg font-semibold">Get started</a>
+                </div>
+                <div class="card card-featured pricing-popular rounded-2xl p-8 fade-in relative">
+                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-semibold bg-primary/20 text-primary border border-primary/40">Most popular</span>
+                    <h3 class="text-lg font-bold text-light mb-1">Operate</h3>
+                    <p class="text-sm text-muted mb-4">Managed ongoing ops</p>
+                    <div class="text-4xl font-black text-light mb-1">$850<span class="text-lg font-normal text-muted">/mo</span></div>
+                    <p class="text-xs text-muted mb-6">Up to 25 active seats</p>
+                    <ul class="space-y-2 text-sm text-muted mb-8">
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Everything in Launch</li>
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Upgrades & monitoring</li>
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Incident + rollback</li>
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>4hr business-hours SLA</li>
+                    </ul>
+                    <a href="#contact" class="btn-primary block text-center text-white py-3 rounded-lg font-semibold">Book a call</a>
+                </div>
+                <div class="card rounded-2xl p-8 fade-in">
+                    <h3 class="text-lg font-bold text-light mb-1">Scale</h3>
+                    <p class="text-sm text-muted mb-4">Growing teams</p>
+                    <div class="text-4xl font-black text-light mb-1">+$35<span class="text-lg font-normal text-muted">/seat</span></div>
+                    <p class="text-xs text-muted mb-6">Seats 26–100 on Operate</p>
+                    <ul class="space-y-2 text-sm text-muted mb-8">
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Priority incidents</li>
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Quarterly architecture review</li>
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Custom sandbox layers</li>
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Compliance add-ons (SOW)</li>
+                    </ul>
+                    <a href="#contact" class="btn-secondary block text-center text-light py-3 rounded-lg font-semibold">Contact us</a>
+                </div>
+            </div>
+            <p class="text-center text-sm text-muted mt-8 fade-in">
+                <strong class="text-light">Pilot offer:</strong> first 3 customers — Launch at $3,000 including 60 days Operate.
+                <br class="hidden sm:block">
+                Estimated AWS infra: <strong class="text-light">$370–870/mo</strong> for ~20 seats (varies by usage). LLM spend is separate (BYOK).
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16">
+        <div class="container mx-auto px-6 max-w-3xl">
+            <h2 class="text-3xl font-black text-light mb-10 text-center fade-in">FAQ</h2>
+            <div class="space-y-4 fade-in">
+                <details class="card rounded-xl p-5 group">
+                    <summary class="font-semibold text-light flex justify-between items-center">
+                        Do you host QM on your infrastructure?
+                        <i class="fa-solid fa-chevron-down text-muted group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-sm text-muted mt-3 leading-relaxed">No. We deploy into <strong class="text-light">your</strong> AWS account. You retain data ownership, network control, and CloudTrail visibility. We operate via a scoped IAM role — not multi-tenant SaaS.</p>
+                </details>
+                <details class="card rounded-xl p-5 group">
+                    <summary class="font-semibold text-light flex justify-between items-center">
+                        Which AWS regions are supported?
+                        <i class="fa-solid fa-chevron-down text-muted group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-sm text-muted mt-3 leading-relaxed">Any region where QM's AWS backend is available, including Lambda MicroVM support. We preflight with <code class="text-primary font-mono text-xs">aws lambda-microvms list-microvm-images</code>. Default recommendation: us-west-2 or us-east-1 unless you have compliance requirements.</p>
+                </details>
+                <details class="card rounded-xl p-5 group">
+                    <summary class="font-semibold text-light flex justify-between items-center">
+                        Who pays for LLM API usage?
+                        <i class="fa-solid fa-chevron-down text-muted group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-sm text-muted mt-3 leading-relaxed">You do, via your own Anthropic, OpenAI, or OpenRouter keys (bring your own key). We configure QM budget caps and help you set sane org-wide limits. We do not markup model tokens.</p>
+                </details>
+                <details class="card rounded-xl p-5 group">
+                    <summary class="font-semibold text-light flex justify-between items-center">
+                        Is Digitize affiliated with Y Combinator?
+                        <i class="fa-solid fa-chevron-down text-muted group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-sm text-muted mt-3 leading-relaxed">No. QM is an MIT-licensed open-source project from Y Combinator. Digitize is an independent consulting company that deploys and operates QM on AWS for customers.</p>
+                </details>
+                <details class="card rounded-xl p-5 group">
+                    <summary class="font-semibold text-light flex justify-between items-center">
+                        What if we don't use AWS?
+                        <i class="fa-solid fa-chevron-down text-muted group-open:rotate-180 transition-transform"></i>
+                    </summary>
+                    <p class="text-sm text-muted mt-3 leading-relaxed">QM also supports Fly.io. This page focuses on our AWS offering for teams with existing AWS footprints or compliance needs. <a href="../#contact" class="text-primary hover:underline">Contact us</a> to discuss Fly.io or a hybrid approach.</p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="py-16 border-t border-white/[0.06]">
+        <div class="container mx-auto px-6 max-w-3xl text-center fade-in">
+            <h2 class="text-3xl md:text-4xl font-black text-light mb-4">Ready to deploy QM on AWS?</h2>
+            <p class="text-muted mb-8">Book a free 30-minute discovery call. We'll qualify fit, estimate AWS costs, and outline a go-live date.</p>
+            <div class="calendly-inline-widget rounded-xl overflow-hidden" data-url="https://calendly.com/jesse-jin-digitize/30min?hide_gdpr_banner=1&background_color=0b0f23&text_color=f1f5f9&primary_color=38bdf8" style="min-width:320px;height:700px;"></div>
+            <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        </div>
+    </section>
+
+    <footer class="bg-darker border-t border-white/[0.08] py-12">
+        <div class="container mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <a href="../" class="font-bold gradient-text text-lg">Digitize LLC</a>
+                <p class="text-sm text-muted mt-1">QM Managed Hosting on AWS</p>
+            </div>
+            <div class="flex gap-6 text-sm text-muted">
+                <a href="../" class="hover:text-primary transition-colors">Consulting home</a>
+                <a href="https://github.com/yc-software/qm" class="hover:text-primary transition-colors" target="_blank" rel="noopener">QM on GitHub</a>
+                <a href="https://www.linkedin.com/company/digitize-ai" class="hover:text-primary transition-colors" target="_blank" rel="noopener">LinkedIn</a>
+            </div>
+        </div>
+        <p class="text-center text-xs text-muted mt-8 px-6">
+            &copy; <span id="year"></span> Digitize LLC. QM is open source (MIT) by Y Combinator. Digitize is not affiliated with YC.
+        </p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'base',
+            securityLevel: 'strict',
+            flowchart: {
+                curve: 'basis',
+                padding: 20,
+                htmlLabels: true,
+                useMaxWidth: true
+            },
+            themeVariables: {
+                darkMode: true,
+                background: '#070B18',
+                primaryColor: '#151B2E',
+                primaryTextColor: '#F1F5F9',
+                primaryBorderColor: '#38BDF8',
+                secondaryColor: '#1e293b',
+                secondaryTextColor: '#F1F5F9',
+                secondaryBorderColor: '#818CF8',
+                tertiaryColor: '#0B0F23',
+                tertiaryTextColor: '#94A3B8',
+                tertiaryBorderColor: '#475569',
+                lineColor: '#64748B',
+                textColor: '#F1F5F9',
+                mainBkg: '#151B2E',
+                nodeBorder: '#38BDF8',
+                clusterBkg: '#0B0F23',
+                clusterBorder: '#818CF8',
+                titleColor: '#F1F5F9',
+                edgeLabelBackground: '#151B2E',
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '13px'
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const t = document.querySelector(a.getAttribute('href'));
+                if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+            });
+        });
+
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+    </script>
+</body>
+</html>
