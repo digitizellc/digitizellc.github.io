@@ -85,16 +85,17 @@
             background: #070B18;
             border: 1px solid rgba(255, 255, 255, 0.1);
             border-radius: 0.75rem;
-            padding: 1rem 0.5rem;
+            padding: 1.5rem 1rem;
             overflow-x: auto;
         }
         .mermaid-wrap .mermaid {
             display: flex;
             justify-content: center;
-            min-width: min(100%, 640px);
+            width: 100%;
         }
         .mermaid-wrap .mermaid svg {
-            max-width: 100%;
+            width: 100%;
+            max-width: none;
             height: auto;
         }
         .diagram-label {
@@ -261,9 +262,11 @@
                     <p class="text-sm text-muted">Digitize operates via a scoped IAM role with external ID — no shared root credentials.</p>
                 </div>
             </div>
+        </div>
 
+        <div class="container mx-auto px-6 max-w-7xl mt-12">
             <!-- Architecture diagrams -->
-            <div class="card-featured rounded-2xl p-6 md:p-8 fade-in space-y-8">
+            <div class="card-featured rounded-2xl p-6 md:p-10 fade-in space-y-8">
                 <h3 class="font-bold text-light flex items-center gap-2">
                     <i class="fa-brands fa-aws text-aws"></i>
                     Reference architecture (single AWS account)
