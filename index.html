@@ -1,6 +1,7 @@
 <html><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Digitize LLC — AI and cloud consulting for startups. We deploy, secure, and operate production AI infrastructure including managed QM hosting for company-wide agent fleets.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -9,12 +10,15 @@
     "theme": {
         "extend": {
         "colors": {
-            "primary": "#00D4FF",
-            "secondary": "#8B5CF6", 
-            "accent": "#F59E0B",
-            "dark": "#0F0F23",
-            "darker": "#07070F",
-            "neon": "#39FF14"
+            "primary": "#38BDF8",
+            "secondary": "#818CF8",
+            "accent": "#FB923C",
+            "dark": "#0B0F23",
+            "darker": "#070B18",
+            "surface": "#151B2E",
+            "success": "#4ADE80",
+            "muted": "#94A3B8",
+            "light": "#F1F5F9"
         },
         "fontFamily": {
             "inter": ["Inter", "sans-serif"],
@@ -23,126 +27,60 @@
         }
     }
     };</script>
-    <title>Digitize - AI Age Consulting</title>
+    <title>Digitize LLC — AI & Cloud Consulting</title>
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap">
-    
+
     <style>
       body {
         font-family: 'Inter', sans-serif !important;
-        background: #0F0F23;
+        background: #0B0F23;
+        color: #F1F5F9;
       }
-      
-      /* Preserve Font Awesome icons */
+
       .fa, .fas, .far, .fal, .fab {
         font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important;
       }
 
-      /* Hide scrollbars */
       ::-webkit-scrollbar { display: none; }
       html, body { -ms-overflow-style: none; scrollbar-width: none; }
 
-      /* Animated gradient background */
-      .gradient-bg {
-        background: linear-gradient(-45deg, #0F0F23, #1a1a3e, #2d1b69, #0F0F23);
-        background-size: 400% 400%;
-        animation: gradientShift 15s ease infinite;
+      .page-bg {
+        background: #0B0F23;
+        background-image:
+          radial-gradient(ellipse 70% 45% at 50% -15%, rgba(56, 189, 248, 0.1), transparent),
+          radial-gradient(ellipse 50% 35% at 90% 20%, rgba(129, 140, 248, 0.06), transparent);
       }
 
-      @keyframes gradientShift {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-      }
-
-      /* Glowing text effect */
-      .glow-text {
-        text-shadow: 0 0 10px currentColor, 0 0 20px currentColor, 0 0 40px currentColor;
-      }
-
-      /* Neon border effect */
-      .neon-border {
-        border: 2px solid transparent;
-        background: linear-gradient(45deg, #00D4FF, #8B5CF6, #00D4FF) border-box;
-        border-radius: 12px;
-        position: relative;
-      }
-
-      .neon-border::before {
-        content: '';
-        position: absolute;
-        inset: 0;
-        padding: 2px;
-        background: linear-gradient(45deg, #00D4FF, #8B5CF6, #F59E0B);
-        border-radius: inherit;
-        mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-        mask-composite: exclude;
-        -webkit-mask-composite: xor;
-      }
-
-      /* Floating animation */
-      .floating {
-        animation: floating 6s ease-in-out infinite;
-      }
-
-      @keyframes floating {
-        0% { transform: translate(0, 0px); }
-        50% { transform: translate(0, -20px); }
-        100% { transform: translate(0, 0px); }
-      }
-
-      /* Pulse animation */
-      .pulse-glow {
-        animation: pulseGlow 2s ease-in-out infinite alternate;
-      }
-
-      @keyframes pulseGlow {
-        from { box-shadow: 0 0 20px #00D4FF; }
-        to { box-shadow: 0 0 40px #00D4FF, 0 0 60px #00D4FF; }
-      }
-
-      /* Typewriter effect */
-      .typewriter {
-        overflow: hidden;
-        border-right: .15em solid #00D4FF;
-        white-space: nowrap;
-        margin: 0 auto;
-        letter-spacing: .15em;
-        animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-      }
-
-      @keyframes typing {
-        from { width: 0 }
-        to { width: 100% }
-      }
-
-      @keyframes blink-caret {
-        from, to { border-color: transparent }
-        50% { border-color: #00D4FF; }
-      }
-
-      /* Card hover effects */
       .service-card {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.3s ease;
+        background: #151B2E;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
       }
 
       .service-card:hover {
-        background: rgba(255, 255, 255, 0.1);
-        transform: translateY(-10px) scale(1.02);
-        box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+        border-color: rgba(56, 189, 248, 0.3);
+        box-shadow: 0 8px 28px rgba(56, 189, 248, 0.08);
       }
 
-      /* Scroll animations */
+      .featured-card {
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.06), rgba(129, 140, 248, 0.06)), #151B2E;
+        border: 1px solid rgba(129, 140, 248, 0.25);
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .featured-card:hover {
+        border-color: rgba(56, 189, 248, 0.4);
+        box-shadow: 0 12px 32px rgba(129, 140, 248, 0.1);
+      }
+
       .fade-in {
         opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        transform: translateY(20px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
       }
 
       .fade-in.animate {
@@ -152,8 +90,8 @@
 
       .slide-in-left {
         opacity: 0;
-        transform: translateX(-50px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        transform: translateX(-30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
       }
 
       .slide-in-left.animate {
@@ -163,8 +101,8 @@
 
       .slide-in-right {
         opacity: 0;
-        transform: translateX(50px);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        transform: translateX(30px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
       }
 
       .slide-in-right.animate {
@@ -174,16 +112,15 @@
 
       .scale-in {
         opacity: 0;
-        transform: scale(0.9);
-        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        transform: translateY(16px);
+        transition: opacity 0.6s ease-out, transform 0.6s ease-out;
       }
 
       .scale-in.animate {
         opacity: 1;
-        transform: scale(1);
+        transform: translateY(0);
       }
 
-      /* Stagger delays */
       .stagger-1 { transition-delay: 0.1s; }
       .stagger-2 { transition-delay: 0.2s; }
       .stagger-3 { transition-delay: 0.3s; }
@@ -191,7 +128,6 @@
       .stagger-5 { transition-delay: 0.5s; }
       .stagger-6 { transition-delay: 0.6s; }
 
-      /* Matrix effect background */
       #matrix-canvas {
         position: fixed;
         top: 0;
@@ -199,313 +135,489 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        opacity: 0.1;
+        opacity: 0.045;
       }
 
-      /* Button effects */
       .btn-primary {
-        background: linear-gradient(45deg, #00D4FF, #8B5CF6);
+        background: linear-gradient(135deg, #38BDF8, #818CF8);
         border: none;
-        transition: all 0.3s ease;
-        position: relative;
-        overflow: hidden;
-      }
-
-      .btn-primary::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-        transition: left 0.5s;
-      }
-
-      .btn-primary:hover::before {
-        left: 100%;
+        transition: opacity 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
       }
 
       .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0, 212, 255, 0.3);
+        opacity: 0.92;
+        box-shadow: 0 6px 20px rgba(56, 189, 248, 0.3);
+        transform: translateY(-1px);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        border: 1px solid rgba(129, 140, 248, 0.35);
+        transition: border-color 0.2s ease, background 0.2s ease;
+      }
+
+      .btn-secondary:hover {
+        background: rgba(129, 140, 248, 0.08);
+        border-color: rgba(56, 189, 248, 0.5);
+      }
+
+      .nav-link {
+        color: #94A3B8;
+        transition: color 0.2s ease;
+      }
+
+      .nav-link:hover {
+        color: #38BDF8;
+      }
+
+      .badge-new {
+        background: rgba(251, 146, 60, 0.12);
+        color: #FB923C;
+        border: 1px solid rgba(251, 146, 60, 0.35);
+      }
+
+      .icon-box {
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(129, 140, 248, 0.12));
+      }
+
+      .gradient-text {
+        background: linear-gradient(135deg, #38BDF8, #818CF8);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
       }
     </style>
 </head>
-<body class="font-inter bg-dark text-white gradient-bg overflow-x-hidden">
-    <!-- Matrix background canvas -->
+<body class="font-inter bg-dark text-light page-bg overflow-x-hidden">
     <canvas id="matrix-canvas"></canvas>
 
-    <!-- Header -->
-    <header id="header" class="fixed top-0 left-0 right-0 bg-dark/80 backdrop-blur-md border-b border-white/10 z-50">
+    <header id="header" class="fixed top-0 left-0 right-0 bg-dark/90 backdrop-blur-md border-b border-white/[0.08] z-50">
         <div class="container mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center cursor-pointer group" id="logo-section">
-                <div class="mr-3 text-primary text-2xl group-hover:text-neon transition-colors">
-                    <i class="fa-solid fa-cloud glow-text"></i>
+                <div class="mr-3 text-primary text-2xl">
+                    <i class="fa-solid fa-cloud"></i>
                 </div>
-                <h1 class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <h1 class="text-2xl font-bold gradient-text">
                     Digitize
                 </h1>
             </div>
-            <button id="get-in-touch-btn" class="btn-primary text-white px-6 py-3 rounded-lg font-medium hover:scale-105 transition-transform">
-                <i class="fa-solid fa-rocket mr-2"></i>
-                Get in Touch
+            <nav class="hidden md:flex items-center gap-8 mr-8">
+                <a href="#services" class="nav-link font-medium">Services</a>
+                <a href="#qm-hosting" class="nav-link font-medium">QM Hosting</a>
+                <a href="#approach" class="nav-link font-medium">Approach</a>
+                <a href="#contact" class="nav-link font-medium">Contact</a>
+            </nav>
+            <button id="get-in-touch-btn" class="btn-primary text-white px-6 py-3 rounded-lg font-medium">
+                <i class="fa-solid fa-calendar-check mr-2"></i>
+                Book a Call
             </button>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="home" class="min-h-screen flex items-center justify-center pt-20 pb-10">
+    <section id="home" class="min-h-screen flex items-center justify-center pt-24 pb-16">
         <div class="container mx-auto px-6">
-            <div class="text-center">
-                <!-- Main headline -->
+            <div class="text-center max-w-5xl mx-auto">
+                <div class="mb-6 slide-in-left">
+                    <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-surface border border-white/[0.08] text-sm text-muted">
+                        <i class="fa-solid fa-building text-primary"></i>
+                        AI & cloud consulting for startups and growing teams
+                    </span>
+                </div>
+
                 <div class="mb-8 slide-in-left">
-                    <h1 class="text-6xl md:text-8xl font-black mb-6 leading-tight">
-                        <span class="bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent glow-text">
-                            AI-POWERED
-                        </span>
+                    <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight">
+                        <span class="text-light">Ship production AI</span>
                         <br>
-                        <span class="text-white typewriter">FUTURE</span>
+                        <span class="gradient-text">without the platform tax</span>
                     </h1>
-                    <div class="text-xl md:text-2xl text-gray-300 max-w-4xl mx-auto font-light mb-8">
-                        Transform your business with <span class="text-primary font-medium">next-generation AI</span> and 
-                        <span class="text-secondary font-medium">cloud technologies</span>. 
-                        We don't just implement solutions – we architect your digital revolution.
-                    </div>
+                    <p class="text-xl md:text-2xl text-muted max-w-3xl mx-auto font-light leading-relaxed">
+                        Digitize helps founders and engineering leaders design cloud architecture,
+                        deploy AI systems, and operate them in production. Hands-on consulting -
+                        not slide decks.
+                    </p>
                 </div>
 
-                <!-- CTA Buttons -->
-                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16 slide-in-right">
-                    <button id="schedule-consultation-btn" class="btn-primary text-white px-8 py-4 rounded-lg font-bold text-lg pulse-glow">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-14 slide-in-right">
+                    <button id="schedule-consultation-btn" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-lg">
                         <i class="fa-solid fa-calendar-check mr-2"></i>
-                        Schedule AI Consultation
+                        Schedule a Consultation
                     </button>
+                    <a href="#qm-hosting" class="btn-secondary text-light px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center">
+                        <i class="fa-solid fa-robot mr-2 text-primary"></i>
+                        Explore QM Hosting
+                    </a>
                 </div>
 
-                <!-- Tech Stack Icons -->
-                <div class="grid grid-cols-2 md:grid-cols-6 gap-8 max-w-4xl mx-auto opacity-60 fade-in">
-                    <div class="text-center floating">
-                        <i class="fa-solid fa-brain text-4xl text-primary mb-2"></i>
-                        <div class="text-sm">AI Implementation</div>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto fade-in">
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-primary mb-1">AWS</div>
+                        <div class="text-sm text-muted">Cloud architecture</div>
                     </div>
-                    <div class="text-center floating" style="animation-delay: 1s;">
-                        <i class="fa-solid fa-cloud text-4xl text-secondary mb-2"></i>
-                        <div class="text-sm">Cloud Architecture</div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-secondary mb-1">AI</div>
+                        <div class="text-sm text-muted">LLM & agent systems</div>
                     </div>
-                    <div class="text-center floating" style="animation-delay: 2s;">
-                        <i class="fa-solid fa-arrow-up-right-dots text-4xl text-accent mb-2"></i>
-                        <div class="text-sm">Cloud Migration</div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-accent mb-1">DevOps</div>
+                        <div class="text-sm text-muted">CI/CD & IaC</div>
                     </div>
-                    <div class="text-center floating" style="animation-delay: 3s;">
-                        <i class="fa-solid fa-code-branch text-4xl text-primary mb-2"></i>
-                        <div class="text-sm">DevOps Services</div>
-                    </div>
-                    <div class="text-center floating" style="animation-delay: 4s;">
-                        <i class="fa-solid fa-mobile-screen-button text-4xl text-secondary mb-2"></i>
-                        <div class="text-sm">Web & Mobile Development</div>
-                    </div>
-                    <div class="text-center floating" style="animation-delay: 5s;">
-                        <i class="fa-solid fa-handshake-angle text-4xl text-accent mb-2"></i>
-                        <div class="text-sm">Strategic Consulting</div>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-success mb-1">QM</div>
+                        <div class="text-sm text-muted">Managed agent hosting</div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-20">
+    <section id="qm-hosting" class="py-20">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-20 fade-in">
-                <h2 class="text-5xl font-black mb-6">
-                    <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                        SERVICES
-                    </span>
+            <div class="featured-card rounded-2xl p-8 md:p-12 fade-in">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <div class="flex flex-wrap items-center gap-3 mb-6">
+                            <span class="badge-new text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
+                                New offering
+                            </span>
+                            <span class="text-muted text-sm font-mono">Managed infrastructure</span>
+                        </div>
+                        <h2 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
+                            <span class="gradient-text">QM Hosting</span>
+                            <span class="text-light"> for your whole company</span>
+                        </h2>
+                        <p class="text-lg text-muted mb-6 leading-relaxed">
+                            Y Combinator open-sourced <a href="https://github.com/yc-software/qm" class="text-primary hover:underline" target="_blank" rel="noopener">QM</a> -
+                            a multiplayer agent harness built for startups, not solo assistants.
+                            Every employee gets an isolated workspace. Teams collaborate in Slack and on the web.
+                            We deploy and operate it in <strong class="text-light">your</strong> Fly.io or AWS account.
+                        </p>
+                        <ul class="space-y-3 mb-8 text-muted">
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-success mt-1"></i>
+                                <span>Live in 48 hours - Slack, web UI, admin panel, and security posture configured</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-success mt-1"></i>
+                                <span>Dedicated deployment in your cloud - your data stays in your account</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-success mt-1"></i>
+                                <span>Ongoing ops: upgrades, monitoring, rollback, and sandbox management</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fa-solid fa-check text-success mt-1"></i>
+                                <span>Model-agnostic - Claude, GPT, OpenRouter, and more via your API keys</span>
+                            </li>
+                        </ul>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <a href="qm.html" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-center inline-flex items-center justify-center">
+                                <i class="fa-solid fa-arrow-right mr-2"></i>
+                                QM Hosting Details & Pricing
+                            </a>
+                            <button class="qm-contact-btn btn-secondary text-light px-8 py-4 rounded-lg font-semibold">
+                                <i class="fa-solid fa-comments mr-2"></i>
+                                Talk to us about QM
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="service-card rounded-xl p-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 icon-box rounded-lg flex items-center justify-center">
+                                    <i class="fa-brands fa-slack text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-light">Slack-native</h3>
+                                    <p class="text-sm text-muted">Same identity across Slack and web</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card rounded-xl p-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 icon-box rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-shield-halved text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-light">Security-first setup</h3>
+                                    <p class="text-sm text-muted">Strict, Auto, or Dangerous posture - configured for your org</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="service-card rounded-xl p-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 icon-box rounded-lg flex items-center justify-center">
+                                    <i class="fa-solid fa-server text-primary text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-light">Per-scope sandboxes</h3>
+                                    <p class="text-sm text-muted">Isolated agent computers with persistent state per person and room</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="rounded-xl p-6 border border-dashed border-white/[0.12] bg-dark">
+                            <p class="text-sm text-muted font-mono mb-2">Built on open source</p>
+                            <p class="text-muted text-sm">
+                                QM is MIT-licensed. Digitize is an independent consulting provider -
+                                not affiliated with Y Combinator.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="approach" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-black mb-6 text-light">
+                    How we work
                 </h2>
-                <p class="text-xl text-gray-300 max-w-3xl mx-auto">
-                    Cutting-edge solutions that push the boundaries of what's possible with AI and cloud technology
+                <p class="text-xl text-muted max-w-3xl mx-auto">
+                    Senior engineers who have shipped production systems - embedded with your team when it matters.
                 </p>
             </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="service-card rounded-2xl p-8 scale-in stagger-1">
-                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center mb-6 pulse-glow">
-                        <i class="fa-solid fa-brain text-2xl text-white"></i>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <div class="service-card rounded-xl p-8 scale-in stagger-1 text-center">
+                    <div class="w-14 h-14 icon-box rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-black text-primary">
+                        1
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-primary">AI Implementation</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        We help you harness the power of AI in practical, meaningful ways. From integrating LLMs and generative AI into your workflows to building custom machine learning solutions, we'll guide you through every step with clarity and care.
+                    <h3 class="text-xl font-bold mb-3 text-light">Assess</h3>
+                    <p class="text-muted leading-relaxed">
+                        Understand your stack, constraints, and what "production-ready" means for your stage.
+                        No boilerplate recommendations.
                     </p>
                 </div>
-                
-                <!-- Service 2 -->
-                <div class="service-card rounded-2xl p-8 scale-in stagger-2">
-                    <div class="w-16 h-16 bg-gradient-to-br from-secondary to-accent rounded-xl flex items-center justify-center mb-6 pulse-glow">
-                        <i class="fa-solid fa-cloud text-2xl text-white"></i>
+                <div class="service-card rounded-xl p-8 scale-in stagger-2 text-center">
+                    <div class="w-14 h-14 icon-box rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-black text-primary">
+                        2
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-secondary">Cloud Architecture</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        Let's design a cloud infrastructure that grows with your business. We specialize in AWS solutions that are secure, scalable, and cost-effective—whether you need serverless architectures, containerization, or microservices.
+                    <h3 class="text-xl font-bold mb-3 text-light">Build & deploy</h3>
+                    <p class="text-muted leading-relaxed">
+                        We implement alongside you - infrastructure as code, CI/CD, observability,
+                        and handoff documentation your team can maintain.
                     </p>
                 </div>
-                
-                <!-- Service 3 -->
-                <div class="service-card rounded-2xl p-8 scale-in stagger-3">
-                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-primary rounded-xl flex items-center justify-center mb-6 pulse-glow">
-                        <i class="fa-solid fa-arrow-up-right-dots text-2xl text-white"></i>
+                <div class="service-card rounded-xl p-8 scale-in stagger-3 text-center">
+                    <div class="w-14 h-14 icon-box rounded-full flex items-center justify-center mx-auto mb-6 text-2xl font-black text-primary">
+                        3
                     </div>
-                    <h3 class="text-2xl font-bold mb-4 text-accent">Cloud Migration</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        Moving to the cloud doesn't have to be stressful. We'll partner with you to plan and execute a smooth migration, minimizing downtime and ensuring your data stays secure throughout the journey.
-                    </p>
-                </div>
-                
-                <!-- Service 4 -->
-                <div class="service-card rounded-2xl p-8 scale-in stagger-4">
-                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center mb-6 pulse-glow">
-                        <i class="fa-solid fa-code-branch text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-primary">DevOps Services</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        Streamline your development process with modern DevOps practices. We'll help you set up CI/CD pipelines, automate deployments, and build infrastructure as code—so your team can ship faster and with confidence.
-                    </p>
-                </div>
-                
-                <!-- Service 5 -->
-                <div class="service-card rounded-2xl p-8 scale-in stagger-5">
-                    <div class="w-16 h-16 bg-gradient-to-br from-secondary to-primary rounded-xl flex items-center justify-center mb-6 pulse-glow">
-                        <i class="fa-solid fa-mobile-screen-button text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-secondary">Web & Mobile Development</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        From responsive websites to native mobile apps, we create digital experiences that users love. Using modern frameworks and best practices, we build applications that are fast, beautiful, and built to last.
-                    </p>
-                </div>
-                
-                <!-- Service 6 -->
-                <div class="service-card rounded-2xl p-8 scale-in stagger-6">
-                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-secondary rounded-xl flex items-center justify-center mb-6 pulse-glow">
-                        <i class="fa-solid fa-handshake-angle text-2xl text-white"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-accent">Strategic Consulting</h3>
-                    <p class="text-gray-300 mb-6 leading-relaxed">
-                        Sometimes you need a trusted advisor to help navigate the tech landscape. We'll work alongside you to develop technology strategies that align with your business goals and set you up for long-term success.
+                    <h3 class="text-xl font-bold mb-3 text-light">Operate</h3>
+                    <p class="text-muted leading-relaxed">
+                        Stay on retainer for upgrades, incident response, and evolving your AI platform
+                        as models and requirements change.
                     </p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <section id="services" class="py-20">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl md:text-5xl font-black mb-6 text-light">
+                    Consulting services
+                </h2>
+                <p class="text-xl text-muted max-w-3xl mx-auto">
+                    Full-stack cloud and AI expertise - from architecture through production operations.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="service-card rounded-xl p-8 scale-in stagger-1">
+                    <div class="w-14 h-14 icon-box rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-robot text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-light">AI & Agent Systems</h3>
+                    <p class="text-muted mb-4 leading-relaxed">
+                        LLM integration, RAG pipelines, agent orchestration, and production guardrails.
+                        Including managed deployments like QM for company-wide agent fleets.
+                    </p>
+                    <a href="#qm-hosting" class="text-primary text-sm font-medium hover:underline">See QM Hosting &rarr;</a>
+                </div>
+
+                <div class="service-card rounded-xl p-8 scale-in stagger-2">
+                    <div class="w-14 h-14 icon-box rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-cloud text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-light">Cloud Architecture</h3>
+                    <p class="text-muted leading-relaxed">
+                        AWS-first designs that are secure, scalable, and cost-aware -
+                        serverless, containers, microservices, and multi-region when you need it.
+                    </p>
+                </div>
+
+                <div class="service-card rounded-xl p-8 scale-in stagger-3">
+                    <div class="w-14 h-14 icon-box rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-arrow-up-right-dots text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-light">Cloud Migration</h3>
+                    <p class="text-muted leading-relaxed">
+                        Plan and execute migrations with minimal downtime.
+                        Data security and rollback paths built in from day one.
+                    </p>
+                </div>
+
+                <div class="service-card rounded-xl p-8 scale-in stagger-4">
+                    <div class="w-14 h-14 icon-box rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-code-branch text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-light">DevOps & Platform</h3>
+                    <p class="text-muted leading-relaxed">
+                        CI/CD pipelines, infrastructure as code, observability, and deployment automation
+                        so your team ships with confidence.
+                    </p>
+                </div>
+
+                <div class="service-card rounded-xl p-8 scale-in stagger-5">
+                    <div class="w-14 h-14 icon-box rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-mobile-screen-button text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-light">Web & Mobile</h3>
+                    <p class="text-muted leading-relaxed">
+                        Responsive web apps and mobile experiences built with modern frameworks
+                        and practices that hold up in production.
+                    </p>
+                </div>
+
+                <div class="service-card rounded-xl p-8 scale-in stagger-6">
+                    <div class="w-14 h-14 icon-box rounded-lg flex items-center justify-center mb-6">
+                        <i class="fa-solid fa-compass text-2xl text-primary"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 text-light">Strategic Advisory</h3>
+                    <p class="text-muted leading-relaxed">
+                        Technology roadmaps, vendor evaluation, and architecture reviews
+                        aligned to business goals - not hype cycles.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="contact" class="py-20 fade-in">
         <div class="container mx-auto px-6">
             <div class="text-center mb-12">
-                <h2 class="text-5xl font-black mb-6">
-                    <span class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                        START YOUR AI JOURNEY
-                    </span>
+                <h2 class="text-4xl md:text-5xl font-black mb-6 text-light">
+                    Let's talk
                 </h2>
-                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
-                    Ready to transform your business? Let's build the future together.
+                <p class="text-xl text-muted max-w-2xl mx-auto">
+                    Whether you need QM deployed for your team or broader AI and cloud consulting -
+                    book a free 30-minute call to discuss your project.
                 </p>
             </div>
-            
-            <!-- Calendly inline widget begin -->
-            <div class="calendly-inline-widget" data-url="https://calendly.com/jesse-jin-digitize/30min?hide_gdpr_banner=1&background_color=2d1b69&text_color=ffffff&primary_color=00d4ff" style="min-width:320px;height:700px;"></div>
+
+            <div class="calendly-inline-widget" data-url="https://calendly.com/jesse-jin-digitize/30min?hide_gdpr_banner=1&background_color=0b0f23&text_color=f1f5f9&primary_color=38bdf8" style="min-width:320px;height:700px;"></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-            <!-- Calendly inline widget end -->
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer id="footer" class="bg-darker/50 backdrop-blur-md border-t border-white/10 py-16">
+    <footer id="footer" class="bg-darker border-t border-white/[0.08] py-16">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-12">
+            <div class="grid md:grid-cols-3 gap-12">
                 <div>
-                    <div class="flex items-center mb-8">
+                    <div class="flex items-center mb-6">
                         <div class="mr-3 text-primary text-3xl">
-                            <i class="fa-solid fa-cloud glow-text"></i>
+                            <i class="fa-solid fa-cloud"></i>
                         </div>
-                        <h3 class="text-2xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                        <h3 class="text-2xl font-bold gradient-text">
                             Digitize LLC
                         </h3>
                     </div>
-                    <p class="text-gray-400 text-lg leading-relaxed">
-                        Building the AI-powered future, one innovation at a time.
+                    <p class="text-muted leading-relaxed mb-4">
+                        AI and cloud consulting for startups. We design, deploy, and operate
+                        production infrastructure - including managed QM hosting.
                     </p>
+                    <a href="https://digitize.llc" class="text-primary hover:underline text-sm">digitize.llc</a>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-8 text-primary">Services</h4>
-                    <ul class="space-y-4">
-                        <li><span class="text-gray-400 hover:text-primary transition-colors cursor-pointer">AI Implementation</span></li>
-                        <li><span class="text-gray-400 hover:text-primary transition-colors cursor-pointer">Cloud Architecture</span></li>
-                        <li><span class="text-gray-400 hover:text-primary transition-colors cursor-pointer">Cloud Migration</span></li>
-                        <li><span class="text-gray-400 hover:text-primary transition-colors cursor-pointer">DevOps Services</span></li>
-                        <li><span class="text-gray-400 hover:text-primary transition-colors cursor-pointer">Web & Mobile Development</span></li>
-                        <li><span class="text-gray-400 hover:text-primary transition-colors cursor-pointer">Strategic Consulting</span></li>
+                    <h4 class="text-lg font-bold mb-6 text-light">Services</h4>
+                    <ul class="space-y-3">
+                        <li><a href="#qm-hosting" class="text-muted hover:text-primary transition-colors">QM Managed Hosting</a></li>
+                        <li><a href="#services" class="text-muted hover:text-primary transition-colors">AI & Agent Systems</a></li>
+                        <li><a href="#services" class="text-muted hover:text-primary transition-colors">Cloud Architecture</a></li>
+                        <li><a href="#services" class="text-muted hover:text-primary transition-colors">DevOps & Platform</a></li>
+                        <li><a href="#contact" class="text-muted hover:text-primary transition-colors">Consulting & Advisory</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-xl font-bold mb-8 text-accent">Connect</h4>
-                    <ul class="space-y-4">
-                        <li><a href="https://www.linkedin.com/company/digitize-ai" class="text-gray-400 hover:text-accent transition-colors">LinkedIn</a></li>
+                    <h4 class="text-lg font-bold mb-6 text-light">Connect</h4>
+                    <ul class="space-y-3">
+                        <li><a href="https://www.linkedin.com/company/digitize-ai" class="text-muted hover:text-primary transition-colors" target="_blank" rel="noopener">LinkedIn</a></li>
+                        <li><a href="#contact" class="text-muted hover:text-primary transition-colors">Book a call</a></li>
+                        <li><a href="qm.html" class="text-muted hover:text-primary transition-colors">QM Hosting</a></li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="border-t border-white/10 mt-16 pt-12 text-center">
-                <p class="text-gray-400 text-lg">
-                    © <span id="current-year"></span> Digitize LLC. Architecting the AI Revolution.
+
+            <div class="border-t border-white/[0.08] mt-12 pt-8 text-center">
+                <p class="text-muted text-sm">
+                    &copy; <span id="current-year"></span> Digitize LLC. Independent consulting provider.
+                    QM is an open-source project by Y Combinator; Digitize is not affiliated with YC.
                 </p>
             </div>
         </div>
     </footer>
 
     <script>
-        // Set current year
         document.getElementById('current-year').textContent = new Date().getFullYear();
-        
-        // Optimized Matrix rain effect
+
+        function scrollToContact() {
+            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('get-in-touch-btn').addEventListener('click', scrollToContact);
+        document.getElementById('schedule-consultation-btn').addEventListener('click', scrollToContact);
+        document.querySelectorAll('.qm-contact-btn').forEach(btn => btn.addEventListener('click', scrollToContact));
+
+        document.getElementById('logo-section').addEventListener('click', function() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
         const canvas = document.getElementById('matrix-canvas');
         const ctx = canvas.getContext('2d');
-        
+
         let canvasWidth = window.innerWidth;
         let canvasHeight = window.innerHeight;
         canvas.width = canvasWidth;
         canvas.height = canvasHeight;
 
-        // Optimized settings for better performance
-        const matrix = "DIGITIZE10";  // Shorter, branded matrix characters
+        const matrix = "DIGITIZE10";
         const matrixArray = matrix.split("");
-        const fontSize = 16;  // Larger font = fewer columns = better performance
+        const fontSize = 16;
         let columns = Math.floor(canvasWidth / fontSize);
         let drops = [];
 
-        // Initialize drops with random starting positions
-        for(let x = 0; x < columns; x++) {
-            drops[x] = Math.random() * -100;  // Random start for wave effect
+        for (let x = 0; x < columns; x++) {
+            drops[x] = Math.random() * -100;
         }
 
-        // FPS control for better performance
         let lastFrameTime = 0;
-        const targetFPS = 24;  // Lower FPS = less CPU usage
+        const targetFPS = 20;
         const frameInterval = 1000 / targetFPS;
-        
-        // Pause when page not visible
+
         let isVisible = true;
         document.addEventListener('visibilitychange', () => {
             isVisible = !document.hidden;
         });
 
         function drawMatrix(currentTime) {
-            // Only run on larger screens and when page is visible
             if (canvasWidth <= 768 || !isVisible) {
                 requestAnimationFrame(drawMatrix);
                 return;
             }
 
-            // FPS throttling
             const deltaTime = currentTime - lastFrameTime;
             if (deltaTime < frameInterval) {
                 requestAnimationFrame(drawMatrix);
@@ -513,28 +625,17 @@
             }
             lastFrameTime = currentTime - (deltaTime % frameInterval);
 
-            // Fade effect - lighter fade = trails disappear faster
-            ctx.fillStyle = 'rgba(15, 15, 35, 0.08)';
+            ctx.fillStyle = 'rgba(11, 15, 35, 0.12)';
             ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
-            // Only update a subset of columns per frame for better performance
-            const updateStep = 2;  // Update every 2nd column
-            
-            for(let i = 0; i < columns; i += updateStep) {
-                // Gradient color effect - brighter at the head
-                const gradient = ctx.createLinearGradient(0, drops[i] * fontSize - fontSize * 3, 0, drops[i] * fontSize);
-                gradient.addColorStop(0, 'rgba(0, 212, 255, 0.1)');
-                gradient.addColorStop(0.5, 'rgba(0, 212, 255, 0.5)');
-                gradient.addColorStop(1, '#00D4FF');
-                
-                ctx.fillStyle = gradient;
+            for (let i = 0; i < columns; i += 3) {
+                const useSecondary = i % 6 === 0;
+                ctx.fillStyle = useSecondary ? 'rgba(129, 140, 248, 0.35)' : 'rgba(56, 189, 248, 0.4)';
                 ctx.font = fontSize + 'px JetBrains Mono, monospace';
-                
                 const text = matrixArray[Math.floor(Math.random() * matrixArray.length)];
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                
-                // Reset drop with probability
-                if(drops[i] * fontSize > canvasHeight && Math.random() > 0.95) {
+
+                if (drops[i] * fontSize > canvasHeight && Math.random() > 0.97) {
                     drops[i] = 0;
                 }
                 drops[i]++;
@@ -543,29 +644,9 @@
             requestAnimationFrame(drawMatrix);
         }
 
-        // Start animation loop
         if (canvasWidth > 768) {
             requestAnimationFrame(drawMatrix);
         }
-
-        // Smooth scrolling for buttons
-        document.getElementById('get-in-touch-btn').addEventListener('click', function() {
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        });
-        
-        document.getElementById('schedule-consultation-btn').addEventListener('click', function() {
-            document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-        });
-
-        document.getElementById('logo-section').addEventListener('click', function() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        // Scroll animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
 
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -573,15 +654,12 @@
                     entry.target.classList.add('animate');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
-        // Observe elements when DOM is loaded
         document.addEventListener('DOMContentLoaded', () => {
-            const elementsToAnimate = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
-            elementsToAnimate.forEach(el => observer.observe(el));
+            document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in').forEach(el => observer.observe(el));
         });
 
-        // Optimized resize handler with debouncing
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
@@ -592,10 +670,10 @@
                 canvas.height = canvasHeight;
                 columns = Math.floor(canvasWidth / fontSize);
                 drops = [];
-                for(let x = 0; x < columns; x++) {
+                for (let x = 0; x < columns; x++) {
                     drops[x] = Math.random() * -100;
                 }
-            }, 250);  // Debounce resize events
+            }, 250);
         });
     </script>
 </body></html>
