@@ -35,6 +35,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
+        ::-webkit-scrollbar { display: none; }
+        html, body { -ms-overflow-style: none; scrollbar-width: none; }
         body { font-family: 'Inter', sans-serif; background: #0B0F23; color: #F1F5F9; }
         .fa, .fas, .far, .fab { font-family: "Font Awesome 6 Free", "Font Awesome 6 Brands" !important; }
         .page-bg {
@@ -107,7 +109,6 @@
         .fade-in.show { opacity: 1; transform: translateY(0); }
         details summary { cursor: pointer; list-style: none; }
         details summary::-webkit-details-marker { display: none; }
-        .pricing-popular { border-color: rgba(56,189,248,0.5); box-shadow: 0 0 0 1px rgba(56,189,248,0.2); }
     </style>
 </head>
 <body class="page-bg overflow-x-hidden">
@@ -422,7 +423,7 @@
                 <h2 class="text-3xl md:text-4xl font-black text-light mb-4">Pricing</h2>
                 <p class="text-muted">Transparent service fees. AWS and model API costs bill directly to your accounts.</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-6">
+            <div class="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
                 <div class="card rounded-2xl p-8 fade-in">
                     <h3 class="text-lg font-bold text-light mb-1">Launch</h3>
                     <p class="text-sm text-muted mb-4">One-time deployment</p>
@@ -436,38 +437,26 @@
                     </ul>
                     <a href="#contact" class="btn-secondary block text-center text-light py-3 rounded-lg font-semibold">Get started</a>
                 </div>
-                <div class="card card-featured pricing-popular rounded-2xl p-8 fade-in relative">
-                    <span class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full text-xs font-semibold bg-primary/20 text-primary border border-primary/40">Most popular</span>
+                <div class="card rounded-2xl p-8 fade-in">
                     <h3 class="text-lg font-bold text-light mb-1">Operate</h3>
-                    <p class="text-sm text-muted mb-4">Managed ongoing ops</p>
+                    <p class="text-sm text-muted mb-4">Managed ongoing ops · requires Launch</p>
                     <div class="text-4xl font-black text-light mb-1">$850<span class="text-lg font-normal text-muted">/mo</span></div>
-                    <p class="text-xs text-muted mb-6">Up to 25 active seats</p>
+                    <p class="text-xs text-muted mb-6">Flat rate — monitoring, upgrades, and incident response</p>
                     <ul class="space-y-2 text-sm text-muted mb-8">
-                        <li><i class="fa-solid fa-check text-success mr-2"></i>Everything in Launch</li>
-                        <li><i class="fa-solid fa-check text-success mr-2"></i>Upgrades & monitoring</li>
-                        <li><i class="fa-solid fa-check text-success mr-2"></i>Incident + rollback</li>
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Health monitoring & alerting</li>
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Scheduled QM upgrades</li>
+                        <li><i class="fa-solid fa-check text-success mr-2"></i>Incident triage & rollback</li>
                         <li><i class="fa-solid fa-check text-success mr-2"></i>4hr business-hours SLA</li>
                     </ul>
                     <a href="#contact" class="btn-primary block text-center text-white py-3 rounded-lg font-semibold">Book a call</a>
-                </div>
-                <div class="card rounded-2xl p-8 fade-in">
-                    <h3 class="text-lg font-bold text-light mb-1">Scale</h3>
-                    <p class="text-sm text-muted mb-4">Growing teams</p>
-                    <div class="text-4xl font-black text-light mb-1">+$35<span class="text-lg font-normal text-muted">/seat</span></div>
-                    <p class="text-xs text-muted mb-6">Seats 26–100 on Operate</p>
-                    <ul class="space-y-2 text-sm text-muted mb-8">
-                        <li><i class="fa-solid fa-check text-success mr-2"></i>Priority incidents</li>
-                        <li><i class="fa-solid fa-check text-success mr-2"></i>Quarterly architecture review</li>
-                        <li><i class="fa-solid fa-check text-success mr-2"></i>Custom sandbox layers</li>
-                        <li><i class="fa-solid fa-check text-success mr-2"></i>Compliance add-ons (SOW)</li>
-                    </ul>
-                    <a href="#contact" class="btn-secondary block text-center text-light py-3 rounded-lg font-semibold">Contact us</a>
                 </div>
             </div>
             <p class="text-center text-sm text-muted mt-8 fade-in">
                 <strong class="text-light">Pilot offer:</strong> first 3 customers — Launch at $3,000 including 60 days Operate.
                 <br class="hidden sm:block">
                 Estimated AWS infra: <strong class="text-light">$370–870/mo</strong> for ~20 seats (varies by usage). LLM spend is separate (BYOK).
+                <br class="hidden sm:block">
+                Larger teams or compliance requirements? <a href="#contact" class="text-primary hover:underline">Contact us</a> for a custom quote.
             </p>
         </div>
     </section>
@@ -517,12 +506,14 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="py-16 border-t border-white/[0.06]">
-        <div class="container mx-auto px-6 max-w-3xl text-center fade-in">
-            <h2 class="text-3xl md:text-4xl font-black text-light mb-4">Ready to deploy QM on AWS?</h2>
-            <p class="text-muted mb-8">Book a free 30-minute discovery call. We'll qualify fit, estimate AWS costs, and outline a go-live date.</p>
-            <div class="calendly-inline-widget rounded-xl overflow-hidden" data-url="https://calendly.com/jesse-jin-digitize/30min?hide_gdpr_banner=1&background_color=0b0f23&text_color=f1f5f9&primary_color=38bdf8" style="min-width:320px;height:700px;"></div>
-            <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
+    <section id="contact" class="py-16 border-t border-white/[0.06] fade-in">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-8 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-4xl font-black text-light mb-4">Ready to deploy QM on AWS?</h2>
+                <p class="text-muted">Book a free 30-minute discovery call. We'll qualify fit, estimate AWS costs, and outline a go-live date.</p>
+            </div>
+            <div class="calendly-inline-widget" data-url="https://calendly.com/jesse-jin-digitize/30min?hide_gdpr_banner=1&background_color=0b0f23&text_color=f1f5f9&primary_color=38bdf8" style="min-width:320px;height:700px;"></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
         </div>
     </section>
 
