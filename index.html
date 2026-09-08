@@ -1,7 +1,7 @@
 <html><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Digitize LLC — AI and cloud consulting for startups. We deploy, secure, and operate production AI infrastructure including managed QM hosting for company-wide agent fleets.">
+    <meta name="description" content="Digitize LLC — AI and cloud consulting for startups. We deploy, secure, and operate production AI infrastructure.">
     <script src="https://cdn.tailwindcss.com"></script>
     <script> window.FontAwesomeConfig = { autoReplaceSvg: 'nest'};</script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -64,17 +64,6 @@
       .service-card:hover {
         border-color: rgba(56, 189, 248, 0.3);
         box-shadow: 0 8px 28px rgba(56, 189, 248, 0.08);
-      }
-
-      .featured-card {
-        background: linear-gradient(135deg, rgba(56, 189, 248, 0.06), rgba(129, 140, 248, 0.06)), #151B2E;
-        border: 1px solid rgba(129, 140, 248, 0.25);
-        transition: border-color 0.2s ease, box-shadow 0.2s ease;
-      }
-
-      .featured-card:hover {
-        border-color: rgba(56, 189, 248, 0.4);
-        box-shadow: 0 12px 32px rgba(129, 140, 248, 0.1);
       }
 
       .fade-in {
@@ -170,12 +159,6 @@
         color: #38BDF8;
       }
 
-      .badge-new {
-        background: rgba(251, 146, 60, 0.12);
-        color: #FB923C;
-        border: 1px solid rgba(251, 146, 60, 0.35);
-      }
-
       .icon-box {
         background: linear-gradient(135deg, rgba(56, 189, 248, 0.12), rgba(129, 140, 248, 0.12));
       }
@@ -203,7 +186,6 @@
             </div>
             <nav class="hidden md:flex items-center gap-8 mr-8">
                 <a href="#services" class="nav-link font-medium">Services</a>
-                <a href="#qm-hosting" class="nav-link font-medium">QM Hosting</a>
                 <a href="#approach" class="nav-link font-medium">Approach</a>
                 <a href="#contact" class="nav-link font-medium">Contact</a>
             </nav>
@@ -242,13 +224,13 @@
                         <i class="fa-solid fa-calendar-check mr-2"></i>
                         Schedule a Consultation
                     </button>
-                    <a href="#qm-hosting" class="btn-secondary text-light px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center">
-                        <i class="fa-solid fa-robot mr-2 text-primary"></i>
-                        Explore QM Hosting
+                    <a href="#services" class="btn-secondary text-light px-8 py-4 rounded-lg font-semibold text-lg inline-flex items-center">
+                        <i class="fa-solid fa-layer-group mr-2 text-primary"></i>
+                        View Services
                     </a>
                 </div>
 
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto fade-in">
+                <div class="grid grid-cols-3 gap-6 max-w-3xl mx-auto fade-in">
                     <div class="text-center">
                         <div class="text-3xl font-bold text-primary mb-1">AWS</div>
                         <div class="text-sm text-muted">Cloud architecture</div>
@@ -260,108 +242,6 @@
                     <div class="text-center">
                         <div class="text-3xl font-bold text-accent mb-1">DevOps</div>
                         <div class="text-sm text-muted">CI/CD & IaC</div>
-                    </div>
-                    <div class="text-center">
-                        <div class="text-3xl font-bold text-success mb-1">QM</div>
-                        <div class="text-sm text-muted">Managed agent hosting</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="qm-hosting" class="py-20">
-        <div class="container mx-auto px-6">
-            <div class="featured-card rounded-2xl p-8 md:p-12 fade-in">
-                <div class="grid lg:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <div class="flex flex-wrap items-center gap-3 mb-6">
-                            <span class="badge-new text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wide">
-                                New offering
-                            </span>
-                            <span class="text-muted text-sm font-mono">Managed infrastructure</span>
-                        </div>
-                        <h2 class="text-4xl md:text-5xl font-black mb-6 leading-tight">
-                            <span class="gradient-text">QM Hosting</span>
-                            <span class="text-light"> for your whole company</span>
-                        </h2>
-                        <p class="text-lg text-muted mb-6 leading-relaxed">
-                            Y Combinator open-sourced <a href="https://github.com/yc-software/qm" class="text-primary hover:underline" target="_blank" rel="noopener">QM</a> -
-                            a multiplayer agent harness built for startups, not solo assistants.
-                            Every employee gets an isolated workspace. Teams collaborate in Slack and on the web.
-                            We deploy and operate it in <strong class="text-light">your</strong> AWS account — RDS, S3, Lambda MicroVMs, and Terraform included.
-                        </p>
-                        <ul class="space-y-3 mb-8 text-muted">
-                            <li class="flex items-start gap-3">
-                                <i class="fa-solid fa-check text-success mt-1"></i>
-                                <span>Live in 48 hours - Slack, web UI, admin panel, and security posture configured</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fa-solid fa-check text-success mt-1"></i>
-                                <span>Dedicated deployment in your cloud - your data stays in your account</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fa-solid fa-check text-success mt-1"></i>
-                                <span>Ongoing ops: upgrades, monitoring, rollback, and sandbox management</span>
-                            </li>
-                            <li class="flex items-start gap-3">
-                                <i class="fa-solid fa-check text-success mt-1"></i>
-                                <span>Model-agnostic - Claude, GPT, OpenRouter, and more via your API keys</span>
-                            </li>
-                        </ul>
-                        <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="qm/" class="btn-primary text-white px-8 py-4 rounded-lg font-semibold text-center inline-flex items-center justify-center">
-                                <i class="fa-solid fa-arrow-right mr-2"></i>
-                                QM Hosting Details & Pricing
-                            </a>
-                            <button class="qm-contact-btn btn-secondary text-light px-8 py-4 rounded-lg font-semibold">
-                                <i class="fa-solid fa-comments mr-2"></i>
-                                Talk to us about QM
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="space-y-4">
-                        <div class="service-card rounded-xl p-6">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 icon-box rounded-lg flex items-center justify-center">
-                                    <i class="fa-brands fa-slack text-primary text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-light">Slack-native</h3>
-                                    <p class="text-sm text-muted">Same identity across Slack and web</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="service-card rounded-xl p-6">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 icon-box rounded-lg flex items-center justify-center">
-                                    <i class="fa-solid fa-shield-halved text-primary text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-light">Security-first setup</h3>
-                                    <p class="text-sm text-muted">Strict, Auto, or Dangerous posture - configured for your org</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="service-card rounded-xl p-6">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 icon-box rounded-lg flex items-center justify-center">
-                                    <i class="fa-solid fa-server text-primary text-xl"></i>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold text-light">Per-scope sandboxes</h3>
-                                    <p class="text-sm text-muted">Isolated agent computers with persistent state per person and room</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="rounded-xl p-6 border border-dashed border-white/[0.12] bg-dark">
-                            <p class="text-sm text-muted font-mono mb-2">Built on open source</p>
-                            <p class="text-muted text-sm">
-                                QM is MIT-licensed. Digitize is an independent consulting provider -
-                                not affiliated with Y Combinator.
-                            </p>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -433,9 +313,7 @@
                     <h3 class="text-xl font-bold mb-4 text-light">AI & Agent Systems</h3>
                     <p class="text-muted mb-4 leading-relaxed">
                         LLM integration, RAG pipelines, agent orchestration, and production guardrails.
-                        Including managed deployments like QM for company-wide agent fleets.
                     </p>
-                    <a href="#qm-hosting" class="text-primary text-sm font-medium hover:underline">See QM Hosting &rarr;</a>
                 </div>
 
                 <div class="service-card rounded-xl p-8 scale-in stagger-2">
@@ -503,8 +381,7 @@
                     Let's talk
                 </h2>
                 <p class="text-xl text-muted max-w-2xl mx-auto">
-                    Whether you need QM deployed for your team or broader AI and cloud consulting -
-                    book a free 30-minute call to discuss your project.
+                    Book a free 30-minute call to discuss your AI and cloud consulting needs.
                 </p>
             </div>
 
@@ -527,14 +404,13 @@
                     </div>
                     <p class="text-muted leading-relaxed mb-4">
                         AI and cloud consulting for startups. We design, deploy, and operate
-                        production infrastructure - including managed QM hosting.
+                        production infrastructure.
                     </p>
                     <a href="https://digitize.llc" class="text-primary hover:underline text-sm">digitize.llc</a>
                 </div>
                 <div>
                     <h4 class="text-lg font-bold mb-6 text-light">Services</h4>
                     <ul class="space-y-3">
-                        <li><a href="#qm-hosting" class="text-muted hover:text-primary transition-colors">QM Managed Hosting</a></li>
                         <li><a href="#services" class="text-muted hover:text-primary transition-colors">AI & Agent Systems</a></li>
                         <li><a href="#services" class="text-muted hover:text-primary transition-colors">Cloud Architecture</a></li>
                         <li><a href="#services" class="text-muted hover:text-primary transition-colors">DevOps & Platform</a></li>
@@ -546,7 +422,6 @@
                     <ul class="space-y-3">
                         <li><a href="https://www.linkedin.com/company/digitize-ai" class="text-muted hover:text-primary transition-colors" target="_blank" rel="noopener">LinkedIn</a></li>
                         <li><a href="#contact" class="text-muted hover:text-primary transition-colors">Book a call</a></li>
-                        <li><a href="qm/" class="text-muted hover:text-primary transition-colors">QM Hosting</a></li>
                     </ul>
                 </div>
             </div>
@@ -554,7 +429,6 @@
             <div class="border-t border-white/[0.08] mt-12 pt-8 text-center">
                 <p class="text-muted text-sm">
                     &copy; <span id="current-year"></span> Digitize LLC. Independent consulting provider.
-                    QM is an open-source project by Y Combinator; Digitize is not affiliated with YC.
                 </p>
             </div>
         </div>
@@ -569,7 +443,6 @@
 
         document.getElementById('get-in-touch-btn').addEventListener('click', scrollToContact);
         document.getElementById('schedule-consultation-btn').addEventListener('click', scrollToContact);
-        document.querySelectorAll('.qm-contact-btn').forEach(btn => btn.addEventListener('click', scrollToContact));
 
         document.getElementById('logo-section').addEventListener('click', function() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
